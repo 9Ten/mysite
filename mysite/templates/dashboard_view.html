@@ -1,0 +1,68 @@
+{% extends 'base.html' %} 
+{% load widget_tweaks %} 
+{% block content %}
+
+<div class="container">
+  <div class="col-sm-3" style="padding: 0px">
+    <center>
+      <div class="sidenav" style="background-color: white">
+        <a class="active" href="{% url 'dashboard_view' %}">General</a>
+        <a href="{% url 'dashboard_status' %}">Status</a>
+        <a href="{% url 'dashboard_payment' %}">Payment</a>
+        <a href="{% url 'dashboard_abstract' %}">Abstract</a>
+      </div>
+    </center>
+  </div>
+  <div class="col-sm-9" style="padding-left: 5px">
+    <div class="dashboard-right-block">
+      <h2 class="dashboard-header">General</h2>
+      {% if user.is_authenticated %}
+      <div class="content-tab">
+        <h4 class="content-tab-confidence" >Your Profile</h4>
+        <div class="paragraph">
+          <table class="dashboard-general-table">
+            <tr>
+              <td>Email</td>
+              <td>{{ profile_user.user }}</td>
+            </tr>
+            <tr>
+              <td>Title</td>
+              <td>{{ profile_user.title }}</td>
+            </tr>
+            <tr>
+              <td>First name</td>
+              <td>{{ profile_user.first_name }}</td>
+            </tr>
+            <tr>
+              <td>Last name</td>
+              <td>{{ profile_user.last_name }}</td>
+            </tr>
+            <!-- <tr>
+              <td>Accept</td>
+              <td>{{ profile_user.accept }}</td>
+            </tr>
+            <tr>
+              <td>Abstract Approvement</td>
+              <td>{{ profile_user.user_status }}</td>
+            </tr> -->
+          </table>
+            <!--            
+              <p>Email: {{ profile_user.user }}</p>
+              <p>Title: {{ profile_user.title }}</p>
+              <p>First name: {{ profile_user.first_name }}</p>
+              <p>Last name: {{ profile_user.last_name }}</p>
+              <p>Accept: {{ profile_user.accept }}</p>
+              <p>Abstract Approvement Status: {{ profile_user.user_status }}</p> 
+            -->
+            <p>Last update: {{ profile_user.update }}</p>
+        </div>
+      </div>
+      <a href="{% url 'dashboard_edit' %}"><button class="dashboard-general-button">Edit Profile</button></a>
+      {% else %}
+      <p>Oops! Please Login</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+

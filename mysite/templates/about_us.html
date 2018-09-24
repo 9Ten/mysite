@@ -1,0 +1,29 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+{% load static %}
+<h3 class="head-page">ABOUT US</h3>
+<h4 class="content-tab-chula">CHULALONGKORN UNIVERSITY</h4>
+<div class="container">
+  <center>
+    <img style="width: 450px;margin: 20px;margin-right: 40px" src="{% static 'image/aboutus_1.png' %}" />
+    <i>Chulalongkorn Univerisity</i>
+  </center>
+  <p class="col-sm-12">
+  Chulalongkorn University (CU; <a href="http://www.chula.ac.th/en/">http://www.chula.ac.th/en/</a>) was established in March 1917 by King Vajiravudh (Rama VI) and named after his father, King Chulalongkorn (Rama V), who had laid the foundations for modern education in Thailand.
+  </p>
+</div>
+<div class="container">
+  <img class="col-sm-4" style="width: 250px" src="{% static 'image/aboutus_2.png' %}"/>
+  <p class="col-sm-8">
+    CU is a comprehensive and research-intensive university.  It is also ranked as the number one university in Thailand (according to QS world university ranking).  The university composed of 19 faculties (schools), 23 colleges, and research institutions with over 37,000 students including 24,000 undergraduates and 13,000 graduate students (8,000 in Master programs and 5,000 in PhD programs), and over 2,800 faculty members.
+  </p>
+</div>
+<div class="container">
+  <p class="col-sm-8">
+    CU campus area located conveniently in the heart of Bangkok city.  The sky train (BTS <a href="http://www.bts.co.th/customer/en/02-route-current_new.aspx">http://www.bts.co.th/</a>) and underground (MRT <a href="http://www.bangkokmetro.co.th/map.aspx?Lang=En&Menu=8">http://www.bangkokmetro.co.th/</a>) stations circulate the campus area, which takes visitors to almost every major Bangkok tourist attractions. CU also provides numerous commercial centers, recreational parks, and sport complexes for students, faculties, and campus visitors.
+  </p>
+  <img class="col-sm-4" width="250px" src="{% static 'image/aboutus_3.png' %}"/>
+</div>
+{% endblock %}

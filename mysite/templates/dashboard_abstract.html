@@ -1,0 +1,48 @@
+{% extends 'base.html' %} 
+{% load widget_tweaks %}
+
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <div class="col-sm-3" style="padding: 0px">
+      <center>
+        <div class="sidenav" style="background-color: white">
+          <a href="{% url 'dashboard_view' %}">General</a>
+          <a href="{% url 'dashboard_status' %}">Status</a>
+          <a href="{% url 'dashboard_payment' %}">Payment</a>
+          <a class="active" href="{% url 'dashboard_abstract' %}">Abstract</a>
+        </div>
+      </center>
+    </div>
+
+    <div class="col-sm-9" style="padding-left: 5px">
+        <div class="dashboard-right-block">
+        <h2 class="dashboard-header">Abstract</h2>
+        {% if user.is_authenticated %}
+          {% csrf_token %}
+          <p>Please update your abstract</p>
+            <br>
+              <form method="post" action="#">
+                <div style="height: 150px;width: 100%">
+                  <label for="field.id_for_label">Abstract file</label>
+                  <input type="file" name="abstarct_file" placeholder="Abstract file" class="form-control" required="" id="id_abstarct_file" accept=".pdf,.docx,.rtf">
+                  <input style="margin: 20px 40%;" class="button-con green" type="submit" name="Submit" value="Submit">
+                </div>
+              </form> 
+          <!-- <p>Email: {{ profile_user.user }}</p>
+          <p>Title: {{ profile_user.title }}</p>
+          <p>First name: {{ profile_user.first_name }}</p>
+          <p>Last name: {{ profile_user.last_name }}</p>
+          <p>Accept: {{ profile_user.accept }}</p>
+          <p>Status: {{ profile_user.user_status }}</p>
+          <p>Last update: {{ profile_user.update }}</p>
+          <p><a href="{% url 'dashboard_edit' %}">Edit Profile</a></p> -->
+        {% else %}
+          <p>Oops! Please Login</p>
+        {% endif %}
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,157 @@
+{% extends 'base.html' %} 
+{% load widget_tweaks %} 
+{% block content %}
+
+{% load static %}
+<div class="container">
+    <div class="col-sm-3" style="padding: 0px">
+      <center>
+        <div class="sidenav" style="background-color: white">
+          <a href="{% url 'dashboard_view' %}">General</a>
+          <a href="{% url 'dashboard_status' %}">Status</a>
+          <a class="active" href="{% url 'dashboard_payment' %}">Payment</a>
+          <a href="{% url 'dashboard_abstract' %}">Abstract</a>
+        </div>
+      </center>
+    </div>
+
+    <div class="col-sm-9" style="padding-left: 5px">
+        <div class="dashboard-right-block">
+        <h2 class="dashboard-header">Payment</h2>
+          <ul class="nav nav-tabs">
+            <li><a data-toggle="tab" href="#national-payment">National Payment</a></li>
+            <li><a data-toggle="tab" href="#thai-payment">Thai Payment</a></li>
+            <li><a data-toggle="tab" href="#about-payment">About Payment</a></li>
+          </ul> 
+        <div class="tab-content">
+            <div class="tab-pane fade" id="national-payment">
+                <center>
+                  <h3 class="dashboard-header">National Payment</h3>
+                  <form>
+                    <input type="text" name="payment-id" placeholder="transaction-ID" pattern=".{17,18}" required title="Please insert correct transaction ID">
+                    <input class="button-con blue" type="submit" value="Submit">
+                  </form>
+                  <table class="payment">
+                    <tr>
+                      <th>Type</th>
+                      <th>Price(USD)</th>
+                      <th>Paypal</th>
+                    </tr>
+                    <tr>
+                      <td>Listener</td>
+                      <td>250</td>
+                      <td>
+                        <form style="border:0px;margin-top: 5px" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                          <input type="hidden" name="cmd" value="_xclick">
+                          <input type="hidden" name="business" value="phonkornkrit@gmail.com">
+                          <input type="hidden" name="lc" value="US">
+                          <input type="hidden" name="item_name" value="Listener 250 THB">
+                          <input type="hidden" name="amount" value="250.00">
+                          <input type="hidden" name="currency_code" value="THB">
+                          <input type="hidden" name="button_subtype" value="services">
+                          <input type="hidden" name="no_note" value="0">
+                          <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynow_LG.gif:NonHostedGuest">
+                          <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                          <img alt="" border="0" src="https://www.paypalobjects.com/th_TH/i/scr/pixel.gif" width="1" height="1">
+                        </form>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Author</td>
+                      <td>400</td>
+                      <td>
+                        <form style="border:0px;margin-top: 5px" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                          <input type="hidden" name="cmd" value="_xclick">
+                          <input type="hidden" name="business" value="phonkornkrit@gmail.com">
+                          <input type="hidden" name="lc" value="US">
+                          <input type="hidden" name="item_name" value="Listener 250 THB">
+                          <input type="hidden" name="amount" value="250.00">
+                          <input type="hidden" name="currency_code" value="THB">
+                          <input type="hidden" name="button_subtype" value="services">
+                          <input type="hidden" name="no_note" value="0">
+                          <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynow_LG.gif:NonHostedGuest">
+                          <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                          <img alt="" border="0" src="https://www.paypalobjects.com/th_TH/i/scr/pixel.gif" width="1" height="1">
+                        </form>
+                      </td>
+                    </tr>
+                  </table>
+                </center>
+            </div>
+            <div class="tab-pane fade" id="thai-payment">
+                <center>
+                  <h3 class="dashboard-header">Thai Payment</h3>
+                  <table class="payment">
+                        <tr>
+                            <th>ประเภทผู้เข้าร่วม</th>
+                            <th>ราคา (บาท)</th>
+                        </tr>
+                        <tr>
+                            <td>Listener</td>
+                            <td>7,500</td>
+                        </tr>
+                        <tr>
+                            <td>Author  </td>
+                            <td>8,500</td>
+                        </tr>
+                    </table>
+                  <h3 class="dashboard-header">Bank Detail</h3>
+                  <img src="{% static 'image/bank.jpg' %}" style="width: 200px" alt="Bangkok Bank(ธนาคารกรุงเทพ)">
+                  <table class="payment">
+                    <th colspan="2">Bangkok Bank Public Company Limited (BBL)</th>
+                    <tr>
+                      <td>Account Name</td>
+                      <td>Sirat Lertjintanakit</td>
+                    </tr>
+                    <tr>
+                      <td>Branch</td>
+                      <td>0939 Chamchuri Square</td>
+                    </tr>
+                    <tr>
+                      <td>Account no</td>
+                      <td>939-020404-9</td>
+                    </tr>
+                    <tr>
+                      <td>Swift code</td>
+                      <td>BKKBTHBK</td>
+                    </tr>
+                  </table>                  
+                  <form>
+                      <div style="width: 100%">
+                        <label class="dashboard-header" for="field.id_for_label">Upload your slip</label>
+                        <input type="file" name="abstarct_file" placeholder="Abstract file" class="form-control" required="" id="id_abstarct_file" accept=".jpg,.png,.gif">
+                        <input style="margin: 20px 40%;" class="button-con green" type="submit" name="Submit" value="Submit">
+                      </div>
+                  </form>
+                </center>            
+            </div>
+            <div class="tab-pane fade in active" id="about-payment">
+              <center><h3 class="dashboard-header">About Payment</h3></center>
+              <p>
+                According to The 5<sup>th</sup> Asian Society of Arachnology Conference, there are 2 payment methods: National payment(<a href="https://www.paypal.com">Paypal</a>) and Thai payment(<a href="https://www.bangkokbank.com/">Bangkok bank</a>).
+                <br>
+                <ul>
+                  <li>If you select National Payment, you need to get the transaction id of your invoice and key into the website.</li>
+                  <li>If you select Thai Payment, you need to upload your slip to the website.</li>
+                </ul>
+              </p>
+            </div>
+        </div>
+
+
+          {% if user.is_authenticated %}
+              <!-- <p>Email: {{ profile_user.user }}</p>
+              <p>Title: {{ profile_user.title }}</p>
+              <p>First name: {{ profile_user.first_name }}</p>
+              <p>Last name: {{ profile_user.last_name }}</p>
+              <p>Accept: {{ profile_user.accept }}</p>
+              <p>Status: {{ profile_user.user_status }}</p>
+              <p>Last update: {{ profile_user.update }}</p>
+              <p><a href="{% url 'dashboard_edit' %}">Edit Profile</a></p> -->
+          {% else %}
+              <p>Oops! Please Login</p>
+          {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

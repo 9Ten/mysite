@@ -1,0 +1,152 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+{% load static %}
+<h3 class="head-page">GENERAL INFORMATION</h3>
+<div class="col-sm-4">
+  <div class="left-menu-general">
+    <a data-toggle="tab" href="#bangkok">BANGKOK</a>
+    <a data-toggle="tab" href="#practical">PRACTICAL</a>
+    <a data-toggle="tab" href="#transprotations">TRANSPORTATIONS</a>
+    <a data-toggle="tab" href="#currency">CURRENCY EXCHANGE</a>
+    <a data-toggle="tab" href="#hospitals">HOSPITALS & CLINICS</a>
+  </div>
+</div>
+<div class="col-sm-8">
+  <div class="tab-content">
+    <div class="tab-pane fade in active" id="bangkok">
+      <h4 class="content-tab-general">Bangkok</h4>
+      <center style="margin-bottom: 20px">
+        <img height="160px" src="{% static 'image/general_1_1.png' %}">
+        <i style="margin-left: 20px">Welcome to Bangkok</i>
+      </center>
+      <p>
+        Bangkok is the capital and most populous city in Thailand (10
+        <sup>+</sup> Millions). There are historical attractions and temples with elaborate architecture and art through out
+        this 200+ years old establishment.
+      </p>
+      <center style="margin-bottom: 20px">
+        <i style="margin-right: 20px">The Capital City of Thailand</i>
+        <img height="160px" src="{% static 'image/general_1_2.png' %}">
+      </center>
+      <div>
+        <p>
+          Famous temples (Wat) are Wat Phra Kaew, Wat Pho, Wat Arun, Wat Phu Khao Thong, Wat Ratchanadda, Wat Traimit, Wat Benchamabophit,
+          Wat Bowon, and Wat Sutat.
+        </p>
+      </div>
+      <div>
+        <img class="col-sm-6" src="{% static 'image/general_1_3.png' %}" />
+        <p>
+          The Grand Palaces, museums, parks and various arrays of shopping venues, from luxury malls to flea and street markets such
+          as the famous Chatuchak weekend market, Sampeng Market, and Pahurat Textile Market, are main attractants for
+          tourists who wish to experience unique Thailand atmosphere.
+        </p>
+        <p>
+          Moreover, Bangkok nightlife is another highlight that has attracted many tourists from all over the world.
+        </p>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="practical">
+      <h4 class="content-tab-general">Practical</h4>
+      <div>
+        <p>
+          Thailand electrical voltage used is 220 volts. Electrical appliances from countries using 110 volts will need a transformer
+          for properly used; however, most computer adaptors can be plugged in directly (pending that the adaptor has
+          an intake capacity of 220-240 volts). Outlet and plug designs that can be used in Thailand are shown in the
+          pictures below.
+        </p>
+      </div>
+      <div>
+        <img class="col-sm-4" src="{% static 'image/general_2_1.png' %}" />
+        <img class="col-sm-4" src="{% static 'image/general_2_2.png' %}" />
+        <img class="col-sm-4" src="{% static 'image/general_2_3.png' %}" />
+      </div>
+    </div>
+    <div class="tab-pane fade" id="transprotations">
+      <h4 class="content-tab-general">Transportations</h4>
+      <div>
+        <p>
+          There are several ways to travel around Bangkok, depends on your preference of time management and fees that you want to
+          spend.
+        </p>
+        <div class="content-tab-other" style="">Major Public Transportation Systems</div>
+        <center>
+          <a href="http://www.bts.co.th/customer/en/02-route-current_new.aspx">
+            <img style="width: 120px" src="{% static 'image/logo_bts.jpg' %}" />
+          </a>
+          <a href="http://www.bangkokmetro.co.th/map.aspx?Lang=En&Menu=8">
+            <img style="width: 110px;margin-top:10px;margin-left: 40px" src="{% static 'image/logo_mrt.png' %}" />
+          </a>
+        </center>
+        <p>
+          The two major public transportation systems in Bangkok metropolitan are the sky train (BTS
+          <a href="http://www.bts.co.th/customer/en/02-route-current_new.aspx">http://www.bts.co.th/</a>) and the underground subway (MRT
+          <a href="http://www.bangkokmetro.co.th/map.aspx?Lang=En&Menu=8">http://www.bangkokmetro.co.th/</a>). You can consult websites of both systems for their different stations
+          and their adjacent tourist attractions.
+        </p>
+        <p>
+          Nearest to the convention venue is the Saladaeng station (BTS), and Samyan Station (MRT). For CU, the closest BTS stations
+          are the National Stadium and Siam stations.
+        </p>
+      </div>
+      <div>
+        <div class="content-tab-other" style="">Other Public Transportations</div>
+        <p style="margin-top:20px">
+          Taxi is another convenient alternative to get around Bangkok. Thai taxi price is relatively cheaper than in many other countries.
+          The fee starts from 35 Baht (around 1 USD) initially and then the meter rolls on. However, being a visitor
+          to Thailand might not provide you with the best benefit since many taxi drivers will take advantage of not
+          using the meter but will charge you with a total price. If this is the case, we recommend you not to use their
+          service and flag down another taxi. Grab Taxi (
+          <a href="https://www.grab.com/th/taxi/">https://www.grab.com/th/taxi/</a>) can be a suitable alternative.
+        </p>
+        <p>
+          Motorcycle for hire is also another economic option to get to places in a speedy fashion, however, we advice against people
+          who never been on a motorcycle before to use this service. Many motorcyclists in Bangkok drive recklessly and
+          dangerously. You can easily identify where the motorcycle service stall will be by observing group of servicemen
+          wearing bright orange jackets on many Bangkok footpaths.
+        </p>
+        <p>
+          Buses and boats are available as well, though the systems are very confusing even for native residents. Only locals that
+          travel frequent can explain to you about the route.
+        </p>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="currency">
+      <h4 class="content-tab-general">Currency Exchange</h4>
+      <div>
+        <p>
+          Thailand uses a currency called Baht for its monetary exchange. Money exchange can be made at most local Thai banks. The
+          rate of different foreign currencies can be found in numerous banks websites, for example,
+          <a
+            href="https://www.kasikornbank.com/en/rate/Pages/Foreign-Exchange.aspx">https://www.kasikornbank.com/en/rate/Pages/Foreign-Exchange.aspx</a>.
+        </p>
+        <p>
+          However, we suggest foreign visitors to use services from two local exchange companies: Siam Exchange (
+          <a href="http://www.siamexchange.co.th">http://www.siamexchange.co.th</a>) and Super Rich (
+          <a href="http://superrich.co.th">http://superrich.co.th</a>), which provide a slightly better rate, though the kiosks are not very common throughout
+          Bangkok.
+        </p>
+        <p>
+          Most if not all food and street vendors, taxi, and manual services in Thailand only accept cash. Only major vendors in shopping
+          malls accept credit card payments, including Visa, Master Card, and JCB.
+        </p>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="hospitals">
+      <h4 class="content-tab-general">Hospitals & Clinics</h4>
+      <div class="paragraph">
+        <p>
+          CU has an affiliation with Chulalongkorn Hospital (
+          <a href="https://en.wikipedia.org/wiki/King_Chulalongkorn_Memorial_Hospital">https://en.wikipedia.org/wiki/King_Chulalongkorn_Memorial_Hospital</a>), which is monitored through Thai Red
+          Cross. For major accidents and long-term hospital stay the Chulalongkorn Hospital provides one of the best
+          physician teams and health equipment, while the cost for going to private clinics in Bangkok is relatively
+          affordable. All foreign visitors are urge to purchase travel insurance before arriving to Thailand.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

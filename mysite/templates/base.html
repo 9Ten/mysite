@@ -1,0 +1,197 @@
+{% load static %}
+<head>
+  <title>ASA2018</title>
+  <link rel="shortcut icon" type="image" href="{% static '/image/spider.png' %}">
+  <!-- TODO Countdown -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+  <!-- Stye css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+  <style type="text/css">
+    .login-form {
+      width: 340px;
+      margin: 50px auto;
+    }
+    .login-form form {
+      margin-bottom: 15px;
+      /* background: #f7f7f7; */
+      /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3); */
+      padding: 30px;
+    }
+    .login-form h2 {
+      margin: 0 0 15px;
+    }
+    .form-control,
+    .btn {
+      min-height: 38px;
+      border-radius: 2px;
+    }
+    .btn {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .bio-footer{
+      margin: 0 auto 0 auto;
+    }
+    .bio-footer div{
+      margin-top: 10px
+    }
+    .bio-footer .col-sm-2{
+      border-left: 1px solid #696969;
+      border-right: 1px solid #696969;
+      height: 150px;
+    }
+    .bio-footer a{
+      color: white;
+      cursor: pointer;
+      display: block;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Start header -->
+  <!-- Navbar : Logo, Member center -->
+  <nav class="navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <div class="navbar-brand">The 5<sup>th</sup> Asian Society of Arachnology Conference</div>
+      </div>
+      <ul class="nav navbar-nav" style="float:right; margin-left: 0%">
+        <li>
+          <a id="countdown" href="{% url 'schedule' %}"></a>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+          <a style="margin: 10px 12px;padding: 4px 12px;border-radius: 5px;border: 1px solid #7cb7ea;background: #00c9ff;color: white;font-weight: bold" href="{% url 'dashboard_view' %}">Dashboard</a> 
+        </li>
+        <li>
+          <a style="margin: 10px 12px;padding: 4px 12px;border-radius: 5px;border: 1px solid #7cb7ea;background: #ff5858;color: white;font-weight: bold" href="{% url 'logout' %}">Log out</a>
+        </li>
+        {% else %}
+        <li>
+          <a style="margin: 10px 12px;padding: 4px 12px;border-radius: 5px;border: 1px solid #7cb7ea;background: #00c9ff;color: white;font-weight: bold"
+            href="{% url 'login' %}">Log in</a>
+        </li>
+        <li>
+          <a style="margin: 10px 12px;padding: 4px 12px;border-radius: 5px;border: 1px solid #7cb7ea;background: orange;color: white;font-weight: bold"
+            href="{% url 'register' %}">Register</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Upcoming Event -->
+  <center>
+    <img src="{% static 'image/header_image.jpg' %}" style="width: 720px;margin:5px;padding: 10px 100px;background-color: white">
+  </center>
+
+  <!-- Navbar Menu -->
+  <nav class="navbar-default">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="{% url 'index' %}">Home</a>
+        </li>
+        <li>
+          <a href="{% url 'news' %}">News</a>
+        </li>
+        <li>
+          <a href="{% url 'speakers' %}">Plenary Speakers</a>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Schedule
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="{% url 'schedule' %}">Important Dates</a>
+            </li>
+            <li>
+              <a href="{% url 'programs' %}">Programs</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="{% url 'abstract' %}">Abstract</a>
+        </li>
+        <li>
+          <a href="{% url 'registration' %}">Registration</a>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Services
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="{% url 'general_information' %}">General Information</a>
+            </li>
+            <li>
+              <a href="{% url 'accommodation' %}">Accommodation</a>
+            </li>
+            <li>
+              <a href="{% url 'convention_venue' %}">Convention Venue</a>
+            </li>
+            <li>
+              <a href="{% url 'excursion' %}">Excursion</a>
+            </li>
+            <li>
+              <a href="{% url 'visa' %}">Visa</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="{% url 'about_us' %}">About us</a>
+        </li>
+        <li>
+          <a href="{% url 'contact' %}">Contact us</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Start content -->
+  <div class="container">
+    {% block content %} 
+    {% endblock %}
+  </div>
+  
+  <!-- Start footer -->
+  <div class="container" style="background-color:rgba(48, 48, 48, 1);padding: 1rem;width: 100%;color: white;padding: 10px 10%">
+    <div class="bio-footer" style="width: 840px">
+      <div class="col-sm-2">
+        <a href="{% url 'index' %}">HOME</a>
+        <a href="{% url 'news' %}">NEWS</a>
+        <a href="{% url 'abstract' %}">ABSTRACT</a>
+        <a href="{% url 'registration' %}">REGISTRATION</a>
+        <a href="{% url 'programs' %}">PROGRAMS</a>
+      </div>
+      <div class="col-sm-3">
+        <a href="{% url 'general_information' %}">GENERAL INFORMATION</a>
+        <a href="{% url 'accommodation' %}">ACCOMMODATION</a>
+        <a href="{% url 'convention_venue' %}">CONVENTION VENUE</a>
+        <a href="{% url 'excursion' %}">EXCURSION</a>
+        <a href="{% url 'visa' %}">VISA</a>
+      </div>
+      <div class="col-sm-2">
+        <a href="{% url 'about_us' %}">ABOUT US</a>
+        <a href="{% url 'contact' %}">CONTACT US</a>
+      </div>
+      <div class="col-sm-5">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3259.047769816194!2d100.53032646849255!3d13.737644486526532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29ed34ddfd63f%3A0x89a5f513c68b932!2z4Lie4Li04Lie4Li04LiY4Lig4Lix4LiT4LiR4LmM4LiY4Lij4Lij4Lih4LiK4Liy4LiV4Li04Lin4Li04LiX4Lii4Liy4LmB4Lir4LmI4LiH4LiI4Li44Lis4Liy4Lil4LiH4LiB4Lij4LiT4LmM4Lih4Lir4Liy4Lin4Li04LiX4Lii4Liy4Lil4Lix4Lii!5e0!3m2!1sth!2sth!4v1527436537148" width="300px" height="150px" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Start sponsor -->
+  <div style="background-color:#008080;padding: 1rem;width: 100%;color: white;text-align: right;">
+    <img style="height: 50px;margin-right: 30px" src="{% static 'image/sponsor_cu.png' %}"/>
+    <img style="height: 50px;margin-top: 10px;margin-right: 30px" src="{% static 'image/sponsor_tistr_2.png' %}"/>
+  </div>
+  <script type="text/javascript" src="{% static 'js/countdown.js' %}"></script>
+</body>

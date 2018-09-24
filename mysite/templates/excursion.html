@@ -1,0 +1,39 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+{% load static %}
+<h3 class="head-page">EXCURSION</h3>
+<h4 class="content-tab-kmutt">King Mongkut’s University of Technology Thonburi</h4>
+<div class="container">
+  <center>
+    <img style="width: 450px;margin: 20px;margin-right: 40px" src="{% static 'image/excur_1.png' %}"/>
+    <i>King Mongkut’s University of Technology Thonburi</i>
+  </center>
+  <p class="col-sm-12">
+    A one-day excursion on the 21
+    <sup>st</sup> November will bring you to King Mongkut’s University of Technology Thonburi (KMUTT), Ratchaburi campus.
+  </p>
+</div>
+<div class="container">
+  <img class="col-sm-4" style="width: 250px" src="{% static 'image/excur_2.png' %}"/>
+  <p class="col-sm-8">
+    The landscape of the excursion area covers primary dipterocarp forest along with secondary and tertiary succession zones
+    of over 20+ hectares. KMUTT, Ratchaburi campus is adjacent (less than 50 km) to the border of Myanmar, where pristine
+    nature is still preserved.
+  </p>
+</div>
+<div class="container">
+  <p class="col-sm-8">
+    You will have the experience of encountering spiders and other arachnids in seasonal rain forest of Southeast Asia.
+  </p>
+  <img class="col-sm-4" width="250px" src="{% static 'image/excur_3.png' %}"/>
+</div>
+<div class="container">
+  <img class="col-sm-4" style="width: 250px" src="{% static 'image/excur_4.png' %}"/>
+  <p class="col-sm-8">
+    Bus transporting delegates to KMUTT, Ratchaburi campus will leave at 7:00 from the Montein Hotel Bangkok (
+    <a href="{% url 'accommodation' %}">see ACCOMODATION</a>) and will leave KMUTT at 17:00. The traveling time from CU to KMUTT is approximately 2 hours.
+  </p>
+</div>
+{% endblock %}

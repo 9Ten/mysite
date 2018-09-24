@@ -1,0 +1,57 @@
+{% extends 'base.html' %} 
+{% load widget_tweaks %} 
+{% block content %} 
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/django.css' %}">
+{% if user.is_authenticated %}
+<div class="col-sm-3" style="padding: 0px">
+  <center>
+    <div class="sidenav" style="background-color: white">
+      <a class="active" href="{% url 'dashboard_view' %}">General</a>
+      <a href="{% url 'dashboard_status' %}">Status</a>
+      <a href="{% url 'dashboard_payment' %}">Payment</a>
+      <a href="{% url 'dashboard_abstract' %}">Abstract</a>
+    </div>
+  </center>
+</div>
+
+<div class="col-sm-9" style="padding-left: 5px">
+  <div class="dashboard-right-block">
+    <h2 class="dashboard-header">General</h2>
+    <div class="register-form">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2 class="text-center">Dashboard</h2>
+
+        {% for field in form %}
+        <div class="form-group">
+          <label for="field.id_for_label">{{ field.label }}</label>
+          {% if form.errors %} 
+          {% if field.errors %}
+          <div class="form-group has-error">
+            {% render_field field class="form-control" placeholder=field.label %}
+          </div>
+          {% for error in field.errors %}
+          <span class="help-block">{{ error }}</span>
+          {% endfor %} 
+          {% else %}
+          <div class="form-group">
+            {% render_field field class="form-control" placeholder=field.label %}
+          </div>
+          {% endif %}
+
+          {% else %} 
+          {% render_field field class="form-control" placeholder=field.label %} 
+          {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </form>
+    </div>
+    {% endif %} 
+  </div>
+</div>
+
+
+{% endblock %}

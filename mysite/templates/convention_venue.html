@@ -1,0 +1,139 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+{% load static %}
+<h3 class="head-page">CONVENTION VENUE AND HOW TO GET THERE</h3>
+<div class="container">
+  <img class="col-sm-2" src="{% static 'image/conven_1.png' %}" alt="Chamchuri Building" style="width: 250px">
+  <div class="col-sm-8">
+    <h4 class="content-tab-confidence">Montien Hotel Bangkok</h4>
+    <div style="margin-top: 15px">
+      <p style="margin-left: 20px">
+        All parts of the scientific program will be hosted at the Montein Hotel Bangkok (
+        <a href="http://www.montien.com">http://www.montien.com</a>) located near CU main campus. The Montein Hotel Bangkok has been a landmark of Bangkok
+        for more than 50 years.
+      </p>
+    </div>
+  </div>
+  <div>
+    <p style="margin-left: 20px">
+      International conferences have been held in this facility affiliated with CU since its was erected. Besides conference room,
+      the Montein Hotel Bangkok is reputably known for their authentic and critic-acclaimed Thai food for both locals
+      and tourists. Participants of the conference will enjoy two coffee breaks and a lunch on everyday of the conference.
+    </p>
+    <p style="margin-left: 20px">
+      The main auditorium conference room will be held in Rajmontein Grand room (700+ m
+      <sup>2</sup>) with a maximum capacity of holding 200 guests will be used for oral and poster presentations.
+    </p>
+  </div>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <center>
+          <img width="400px" src="{% static 'image/conven_2.png' %}" alt="Auditorium Room">
+        </center>
+      </div>
+      <div class="item">
+        <center>
+          <img width="400px" height="268.63px" src="{% static 'image/conven_3.png' %}" alt="Auditorium Room">
+        </center>
+      </div>
+    </div>
+  </div>
+
+  <center>
+    <div style="margin:20px 0px">
+      <img style="margin-left: 20px;width: 36px" src="{% static 'image/google-maps.png' %}">
+      <a href="https://goo.gl/maps/tfyS8EbVhR62" target="_blank">
+        <span style="margin-left: 20px">Montien Hotel Bangkok</span>
+      </a>
+    </div>
+  </center>
+</div>
+
+<div class="content-tab">
+  <h4 class="content-tab-general">How to get there ?</h4>
+  <div class="paragraph">
+    <p>
+      To get to the conference venue, participants should arrive in one of the two Thailand international airports available:
+      <a href="https://www.donmueangairport.com">Don Mueang</a> and
+      <a href="https://airportthai.co.th/en/">Suvarnabhumi</a> airports.
+    </p>
+    <center>
+      <ul class="nav nav-tabs">
+        <button class="button-con blue" data-toggle="tab" href="#donmuang">Don Mueang Airport</button>
+        <button class="button-con green" data-toggle="tab" href="#suvarnabhumi">Suvarnabhumi Airport</button>
+      </ul>
+    </center>
+    <div class="tab-content">
+      <div class="tab-pane fade" id="donmuang">
+        <div class="paragraph">
+          <p>
+            <b>From Don Mueang Airport </b>(
+            <a href="https://www.donmueangairport.com">https://www.donmueangairport.com</a>): there couple of routes that you can explore depending on whether how
+            adventurous you are and if you want to save some money.
+          </p>
+          <ul>
+            <li style="margin-bottom: 10px">
+              <b>Route 1</b>
+              <br> At the arrival terminal there is a free airport shuttle bus number A1 that will take you to Mo Chit (the
+              largest bus terminal in Bangkok). As you arrive at Mo Chit, which is near a sky train (BTS :
+              <a href="http://www.bts.co.th/customer/en/02-route-current_new.aspx">http://www.bts.co.th</a>) station, you can take the sky train to arrive at Saladaeng station (you will
+              need to switch to Silom route at Siam station). Departing the station, it will take you couples of minutes
+              to arrive at the convention venue by walking.
+              <br>
+              <br> Alternatively, you can get a taxi from the airport to arrive at Mo Chit.
+            </li>
+            <li style="margin-bottom: 10px">
+              <b>Route 2</b>
+              <br> There is a taxi station in Don Mueang Airport, you have to wait for a cue and pay addition 50 Baht surcharge
+              on top of what the meter says when you arrive at the conference venue.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="suvarnabhumi">
+        <div class="paragraph">
+          <p>
+            <b>From Suvarnabhumi Airport </b>(
+            <a href="https://airportthai.co.th/en/">https://airportthai.co.th</a>): Suvarnabhumi airport provide more convenient way of traveling to CU. There
+            are such options.
+          </p>
+          <ul>
+            <li style="margin-bottom: 10px">
+              <b>Route 1</b>
+              <br> The lowest floor of Suvarnabhumi airport, there is an access to the Airport Rail Link (ARL:
+              <a href="http://www.srtet.co.th/index.php/en/">http://www.srtet.co.th/index.php/en/</a>), a train connecting from the airport to the inner city of Bangkok.
+              The last stop for the ARL is your destination (Phaya Thai station). From the station, take the BTS sky
+              train to Saladaeng station (you will need to switch to Silom route at Siam station). Departing the station,
+              it will take you couples of minutes to arrive at the convention venue by walking.
+            </li>
+            <li style="margin-bottom: 10px">
+              <b>Route 2</b>
+              <br> A taxi service is available in level xx of the airport. You have to wait for a cue and pay addition 50
+              Baht surcharge on top of what the meter say when you arrive at the convention venue.
+            </li>
+            <li style="margin-bottom: 10px">
+              <b>Route 3</b>
+              <br> Airport limousine (
+              <a href="https://www.aot-limousine.com/serviceclient.html">https://www.aot-limousine.com/serviceclient.html</a>). This is the most convenient way to arrive at the
+              conference venue though the most expensive. You can book your reservation online and have the service pick
+              you up at the airport.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="tab-pane fade in active" id="first page">
+        <center style="margin-bottom: 50px">
+          <div>
+            <h2>Which airport do you arrive?</h2>
+            <i>click the above buttons for more information</i>
+          </div>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

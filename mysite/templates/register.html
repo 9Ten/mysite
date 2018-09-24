@@ -1,0 +1,57 @@
+{% extends 'base.html' %} 
+
+{% load static %}
+
+{% load widget_tweaks %} 
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/django.css' %}">
+<div class="register-form">
+  <form action="#" method="post">
+    {% csrf_token %}
+    <h2 class="text-center">Register</h2>
+
+    {% for field in userform %}
+    <div class="form-group">
+      <label for="field.id_for_label">{{ field.label }}</label>
+      {% if userform.errors %}
+        {% if field.errors %}
+          <div class="form-group has-error">
+          {% render_field field class="form-control" placeholder=field.label %}
+          </div>
+          {% for error in field.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        {% else %}
+          <div class="form-group">
+            {% render_field field class="form-control" placeholder=field.label %}
+          </div>
+        {% endif %}
+      {% else %}
+        {% render_field field class="form-control" placeholder=field.label %}
+      {% endif %}
+    </div>
+    {% endfor %}
+    
+    {% for field in userprofileform %}
+    <div class="form-group">
+      <label for="field.id_for_label">{{ field.label }}</label>
+      {% if userprofileform.errors %}
+        <div class="form-group has-error">
+            {% render_field field class="form-control" placeholder=field.label %}
+        </div>
+        {% for error in field.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      {% else %}
+        {% render_field field class="form-control" placeholder=field.label %}
+      {% endif %}
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  
+</div>
+
+{% endblock %}
