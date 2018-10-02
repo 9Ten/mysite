@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from dashboard.models import UserProfile
 
 
@@ -33,8 +32,37 @@ class EditProfileForm(forms.ModelForm):
             'department',
             'degree',
             'country',
-            'address',
             'phone_number',
-            'abstarct_file',
+            'address',
             'user_type',
+        )
+
+class UploadPaymentBankingForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = (
+            'slip_pic',
+        )
+
+class UploadPaymentPaypalForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = (
+            'paypal_trans_id',
+        )
+
+class UploadAbstractForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = (
+            'abstarct_file',
+        )
+
+class StatusForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = (
+            'user_status',
+            'abstarct_file_status',
+            'payment_status'
         )

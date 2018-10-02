@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, get_user_model
 
 # Create your views here.
 from account.models import User
-from account.forms import RegisterForm, PasswordResetForm
+from account.forms import RegisterForm
 from dashboard.forms import ProfileForm
 
 # permission

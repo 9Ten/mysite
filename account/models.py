@@ -44,9 +44,9 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     email = models.EmailField(max_length=255, unique=True)
-    is_active = models.BooleanField(default=True)  # can login
-    staff = models.BooleanField(default=False)  # staff user non superuser
-    admin = models.BooleanField(default=False)  # superuser
+    is_active = models.BooleanField(default=True)       # can login
+    staff = models.BooleanField(default=False)          # staff user non superuser
+    admin = models.BooleanField(default=False)          # superuser
     created = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'email'  # username
@@ -71,7 +71,3 @@ class User(AbstractBaseUser):
     @property
     def is_admin(self):
         return self.admin
-
-    # @property
-    # def is_active(self):
-    #     return self.is_active

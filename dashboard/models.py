@@ -12,16 +12,19 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-def user_directory_path(instance, filename):
+
+def abstract_handle(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    filename = filename.split('.')[1]
-    return 'documents/{}.{}'.format(str(instance.user.id), filename)
+    filename_ext = filename.split('.')[1]
+    return 'abstract/{}.{}'.format(str(instance.user.id), filename_ext)
+
+def payment_handle(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    filename_ext = filename.split('.')[1]
+    return 'picture/{}.{}'.format(str(instance.user.id), filename_ext)
 
 
 class UserProfile(models.Model):
-    """
-    http://www.iussi2018.com/user/login
-    """
     DEGREE_CHOICES = (
         ('prof.', 'Prof.'),
         ('dr.', 'Dr.'),
@@ -297,12 +300,16 @@ class UserProfile(models.Model):
     ]
     USER_STATUS_CHOICES = [
         ('waiting', 'Waiting'),
-        ('pending', 'Pending'),
-        ('confirm', 'Confirm'),
-        ('decline', 'Decline')
+        ('ready', 'Ready'),
     ]
+    # USER_STATUS_CHOICES = [
+    #     ('waiting', 'Waiting'),
+    #     ('pending', 'Pending'),
+    #     ('confirm', 'Confirm'),
+    #     ('decline', 'Decline')
+    # ]
 
-    #=== TODO userprofile ===#
+    #=== Section userprofile ===#
     user = models.OneToOneField(User, on_delete=models.CASCADE)     # Email
 
     title = models.CharField(max_length=10, choices=TITLE_CHOICES)
@@ -315,24 +322,27 @@ class UserProfile(models.Model):
     degree = models.CharField(max_length=10, choices=DEGREE_CHOICES)
     country = models.CharField(max_length=30, choices=COUNTRY_CHOICES)
     institution_country = models.CharField(max_length=30, choices=COUNTRY_CHOICES)
+    phone_number = models.CharField(max_length=15)
     address = models.TextField()
 
-    # autocomplete
-    # iso_code = models.IntegerField()
-    # phone_code = models.IntegerField()
-    phone_number = models.CharField(max_length=20, default='')
-
-    #=== TODO dashboard ===#
-    # description = models.CharField(max_length=255, blank=True)
-    abstarct_file = models.FileField(upload_to=user_directory_path, validators=[FileExtensionValidator(['pdf', '.docx', 'rtf'])], help_text="Browse a file")
-    uploaded_at = models.DateTimeField(null=True, blank=True)
-    accept = models.BooleanField(default=False)
-
-    paypal_trans_id = models.CharField(max_length=17)
-    user_status = models.CharField(max_length=30, choices=USER_STATUS_CHOICES, default='waiting')
     user_type = models.CharField(max_length=30, choices=USER_TYPE_CHOICES, default='listener')
+    user_status = models.CharField(max_length=30, choices=USER_STATUS_CHOICES, default='waiting')
     update = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
+    accept = models.BooleanField(default=False)
+
+    #=== Section dashboard ===#
+    # abstract
+    # description = models.CharField(max_length=255, blank=True)
+    abstarct_file = models.FileField(upload_to=abstract_handle, validators=[FileExtensionValidator(['pdf', '.docx', 'rtf'])], help_text="Browse a file")
+    abstarct_file_uploaded = models.DateTimeField(null=True, blank=True)
+    abstarct_file_status = models.BooleanField(default=False)
+    # payment-thai
+    slip_pic = models.ImageField(upload_to=payment_handle, validators=[FileExtensionValidator(['jpg', 'png'])], help_text="Browse a picture")
+    # payment-national
+    paypal_trans_id = models.CharField(max_length=17)
+    paypal_uploaded = models.DateTimeField(null=True, blank=True)
+    payment_status = models.BooleanField(default=False)
 
     REQUIRED_FIELDS = [
         'title',
@@ -343,7 +353,6 @@ class UserProfile(models.Model):
         'degree',
         'country',
         'phone_number',
-        'paypal_trans_id',
         'user_type'
     ]
     # objects = UserProfileManager()
@@ -354,12 +363,32 @@ class UserProfile(models.Model):
     def status_abstract(self):
         import datetime
         if self.abstarct_file:
-            self.user_status = "pending"
-            self.uploaded_at = datetime.datetime.now()
+            self.abstarct_file_status = True
+            self.abstarct_file_uploaded = datetime.datetime.now()
             return True
         else:
-            self.user_status = "waiting"
-            self.uploaded_at = None
+            self.abstarct_file_status = False
+            self.abstarct_file_uploaded = None
+            return False
+
+    def status_payment(self):
+        import datetime
+        if self.slip_pic or self.paypal_trans_id:
+            self.payment_status = True
+            self.paypal_uploaded = datetime.datetime.now()
+            return True
+        else:
+            self.payment_status = False
+            self.paypal_uploaded = None
+            return False
+
+    def status_user(self):
+        import datetime
+        if self.abstarct_file_status and self.payment_status:
+            self.user_status = 'ready'
+            return True
+        else:
+            self.user_status = 'waiting'
             return False
 
 
@@ -372,7 +401,6 @@ def create_user_profile(sender, instance, created, **kwargs):
         # userprofile.save()
         # UserProfile.objects.create(user=instance)
 
-
 # @receiver(post_save, sender=User)
 # def save_user_profile(sender, instance, **kwargs):
 #     instance.userProfile.save()
@@ -382,7 +410,6 @@ def create_user_profile(sender, instance, created, **kwargs):
 #     if created:
 #         UserProfile.objects.create(user=instance)
 #     instance.profile.save()
-
 
 # @receiver(post_save, sender=User)
 # def save_user_profile(sender, instance, **kwargs):
