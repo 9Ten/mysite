@@ -10,7 +10,6 @@ from django.core.validators import FileExtensionValidator
 from django.contrib.auth import get_user_model
 
 
-# User = settings.AUTH_USER_MODEL
 User = get_user_model()
 
 def user_directory_path(instance, filename):

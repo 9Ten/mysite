@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% load widget_tweaks %}
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/django.css' %}">
   <div class="login-form">
     <form action="{% url 'login' %}" method="post">
       {% csrf_token %}

@@ -17,13 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 # account
-from account.views import register, password_reset
+from account.views import register
 
 # dashboard
 from dashboard.views import dashboard_view, dashboard_edit, dashboard_status, dashboard_abstract,dashboard_payment
 
-from django.contrib.auth.views import LogoutView
-# login, logout
 from django.contrib.auth import views as auth_views
 from mysite import views as static_content
 
@@ -66,8 +64,11 @@ urlpatterns = [
     path('logout/', auth_views.logout, {'template_name': 'logout.html'}, name='logout'),
     path('register/', register, name='register'),
 
-    # password_reset
-    path('password_reset/', password_reset, name='password_reset'),
+    # password_reset with email
+    path('password_reset/', auth_views.password_reset, {'template_name': 'password_reset_form.html'}, name='password_reset'),
+    path('password_reset/done/', auth_views.password_reset_done, {'template_name': 'password_reset_done.html'}, name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.password_reset_confirm, {'template_name': 'password_reset_confirm.html'}, name='password_reset_confirm'),
+    path('reset/done/', auth_views.password_reset_complete, {'template_name': 'password_reset_complete.html'}, name='password_reset_complete'),
 
     # Section Admin
     path('myadmin/', admin.site.urls),

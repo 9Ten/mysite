@@ -25,8 +25,8 @@ SECRET_KEY = '@5%j2iox9_m3cg6svn!lx1y20hp(a#eu!wd@*n9u*36@3c5aw='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['conference-django.herokuapp.com']
-
+# ALLOWED_HOSTS = ['conference-django.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
@@ -51,6 +51,20 @@ INSTALLED_APPS = [
     # Bootstrap css
     'widget_tweaks'
 ]
+
+# Development
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  
+
+# Production
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'panapot@hotmail.com'
+EMAIL_HOST_PASSWORD = '0894750257ten'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'ASA2018 Team <noreply@example.com>'
+
+
 AUTH_USER_MODEL = 'account.User'  # To changes the user model to ours
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
@@ -68,7 +82,6 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -123,7 +136,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -140,12 +152,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "static_root")
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR))
 
-"""
-admin@admin.com
-adminadmin01
-"""
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -164,8 +172,6 @@ CKEDITOR_CONFIGS = {
 
 CKEDITOR_CONFIGS = {
     'default': {
-        # 'skin': 'moono',
-        # 'skin': 'office2013',
         'toolbar_Basic': [
             ['Source', '-', 'Bold', 'Italic']
         ],
@@ -185,10 +191,10 @@ CKEDITOR_CONFIGS = {
             {'name': 'paragraph',
              'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-',
                        'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']},
-            # {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
-            # {'name': 'insert',
-            #  'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
-            # '/',
+            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
+            {'name': 'insert',
+             'items': ['Image']},
+            '/',
             {'name': 'styles', 'items': [
                 'Styles', 'Format', 'Font', 'FontSize']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},

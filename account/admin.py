@@ -14,7 +14,7 @@ User = get_user_model()
 # Todo Deactivate acction
 def user_action(modeladmin, request, queryset):
     for user in queryset:
-        user.active = False
+        user.is_active = False
         user.save()
 
 user_action.short_description = 'Deactivate selected users'
@@ -32,12 +32,12 @@ class UserAdmin(BaseUserAdmin):
     # These override the definitions on the base UserAdmin
     # that reference specific fields on aut.Users
     list_display = ('email', 'admin', 'created')
-    list_filter = ('admin', 'active')
+    list_filter = ('admin', 'is_active')
     list_per_page = 25
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         # ('Personal Info', {'fields': ()}),
-        ('Permissions', {'fields': ('admin', 'active')}),
+        ('Permissions', {'fields': ('admin', 'is_active')}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.

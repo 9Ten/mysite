@@ -58,15 +58,3 @@ def register(request):
             'userprofileform': userprofileform
         }
     )
-
-
-def password_reset(request):
-    if request.method == 'POST':
-        form = PasswordResetForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')
-    else:
-        form = PasswordResetForm()
-    return render(request, 'password_reset.html', {'form': form})
-

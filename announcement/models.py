@@ -9,10 +9,14 @@ class News(models.Model):
     )
     title = models.CharField(max_length=250)
     content = fields.RichTextField()
-    # published
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
-    status = models.CharField(max_length=9, choices=STATUS_CHOICES, default='draft')
+    # published
+    status = models.CharField(
+        max_length=9, 
+        choices=STATUS_CHOICES, 
+        default='draft'
+    )
 
     def __str__(self):
         return self.title
