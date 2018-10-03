@@ -300,14 +300,11 @@ class UserProfile(models.Model):
     ]
     USER_STATUS_CHOICES = [
         ('waiting', 'Waiting'),
+        ('pending', 'Pending'),
+        ('confirm', 'Confirm'),
+        ('decline', 'Decline'),
         ('ready', 'Ready'),
     ]
-    # USER_STATUS_CHOICES = [
-    #     ('waiting', 'Waiting'),
-    #     ('pending', 'Pending'),
-    #     ('confirm', 'Confirm'),
-    #     ('decline', 'Decline')
-    # ]
 
     #=== Section userprofile ===#
     user = models.OneToOneField(User, on_delete=models.CASCADE)     # Email
@@ -341,7 +338,7 @@ class UserProfile(models.Model):
     slip_pic = models.ImageField(upload_to=payment_handle, validators=[FileExtensionValidator(['jpg', 'png'])], help_text="Browse a picture")
     # payment-national
     paypal_trans_id = models.CharField(max_length=17)
-    paypal_uploaded = models.DateTimeField(null=True, blank=True)
+    payment_uploaded = models.DateTimeField(null=True, blank=True)
     payment_status = models.BooleanField(default=False)
 
     REQUIRED_FIELDS = [
@@ -355,35 +352,11 @@ class UserProfile(models.Model):
         'phone_number',
         'user_type',
     ]
-    # objects = UserProfileManager()
 
     def __str__(self):
         return self.user.email
 
-    def status_abstract(self):
-        import datetime
-        if self.abstarct_file:
-            self.abstarct_file_status = True
-            self.abstarct_file_uploaded = datetime.datetime.now()
-            return True
-        else:
-            self.abstarct_file_status = False
-            self.abstarct_file_uploaded = None
-            return False
-
-    def status_payment(self):
-        import datetime
-        if self.slip_pic or self.paypal_trans_id:
-            self.payment_status = True
-            self.paypal_uploaded = datetime.datetime.now()
-            return True
-        else:
-            self.payment_status = False
-            self.paypal_uploaded = None
-            return False
-
     def status_user(self):
-        import datetime
         if self.abstarct_file_status and self.payment_status:
             self.user_status = 'ready'
             return True

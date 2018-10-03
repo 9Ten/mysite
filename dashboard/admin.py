@@ -15,15 +15,30 @@ def unaccept_action(modeladmin, request, queryset):
         user.accept = False
         user.save()
 
+def confirm_action(modeladmin, request, queryset):
+    for user in queryset:
+        if user.user_status == 'pending':
+            user.user_status = 'confirm'
+            user.save()
 
-accept_action.short_description = 'Accept selected users'
-unaccept_action.short_description = 'Unaccept selected users'
+def decline_action(modeladmin, request, queryset):
+    for user in queryset:
+        if user.user_status == 'pending':
+            user.user_status = 'decline'
+            user.save()
+
+
+accept_action.short_description = 'Accept selected users that user_status ready'
+unaccept_action.short_description = 'Unaccept selected users user_status not ready'
+confirm_action.short_description = 'Confirm selected users that abstarct_file correct'
+decline_action.short_description = 'Confirm selected users that abstarct_file not correct'
 
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = (
-        'user', 'user_type', 'accept', 'country', 'update',
-        'abstarct_file', 'slip_pic', 'paypal_trans_id', 
+        'user', 'user_type', 'user_status', 
+        'abstarct_file_status', 'abstarct_file', 'payment_status', 'slip_pic', 'paypal_trans_id', 
+        'accept', 'update',
     )
     list_filter = [
         'accept', 
@@ -32,7 +47,7 @@ class UserProfileAdmin(admin.ModelAdmin):
         'abstarct_file_status',
         'payment_status'
     ]
-    search_fields = ['user__email', 'paypal_trans_id', 'country']
+    search_fields = ['user__email', 'paypal_trans_id']
     list_display_links = ['user', 'abstarct_file', 'slip_pic']
     list_per_page = 25
     ordering = ['update']
@@ -57,7 +72,7 @@ class UserProfileAdmin(admin.ModelAdmin):
             'fields': (
                 'slip_pic',
                 'paypal_trans_id', 
-                'paypal_uploaded',
+                'payment_uploaded',
                 'payment_status',
             )
         }),
@@ -76,10 +91,10 @@ class UserProfileAdmin(admin.ModelAdmin):
         'country', 'unit', 'department', 'degree', 
         'institution_country', 'phone_number', 'address', 
         'abstarct_file', 'abstarct_file_uploaded', 
-        'slip_pic', 'paypal_trans_id', 'paypal_uploaded',
+        'slip_pic', 'paypal_trans_id', 'payment_uploaded',
         'user_type', 'update','timestamp',
     )
-    actions = [accept_action, unaccept_action]
+    actions = [confirm_action, decline_action, accept_action, unaccept_action,]
 
     class Meta:
         model = UserProfile

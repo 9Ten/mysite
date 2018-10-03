@@ -1,4 +1,4 @@
-from announcement.models import News
+from announcement.models import Announcement
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, get_user_model
@@ -11,7 +11,7 @@ User = get_user_model()
 
 #=== Section dynamic content ===#
 def news(request):
-    news_list = News.objects.all().filter(status='published').values()
+    news_list = Announcement.objects.all().filter(status='published').values()
     context = []
     for news in news_list:
         context.append(news)

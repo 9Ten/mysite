@@ -2,7 +2,7 @@
 from django.db import models
 from ckeditor import fields
 
-class News(models.Model):
+class Announcement(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
         ('published', 'Published')
