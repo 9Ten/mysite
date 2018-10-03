@@ -6,7 +6,7 @@ from dashboard.forms import *
 
 @login_required(login_url='/login/')
 def dashboard_view(request):
-    queryset = UserProfile.objects.values_list(
+    queryset = UserProfile.objects.values(
         'title',
         'first_name',
         'last_name',
@@ -18,6 +18,7 @@ def dashboard_view(request):
         'phone_number',
         'address',
         'user_type',
+        'update',
     )
     user = get_object_or_404(queryset, user=request.user)
     return render(
@@ -29,7 +30,6 @@ def dashboard_view(request):
 @login_required(login_url='/login/')
 def dashboard_edit(request):
     user = get_object_or_404(UserProfile, user=request.user)
-    # userprofile = UserProfile.objects.get(user=request.user)
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=user)
         if form.is_valid():
@@ -45,16 +45,36 @@ def dashboard_edit(request):
 
 @login_required(login_url='/login/')
 def dashboard_status(request):
-    user = get_object_or_404(UserProfile, user=request.user)
-    return render(request, 'dashboard_status.html', {'profile_user': user})
+    queryset = UserProfile.objects.values(
+        'user_status',
+        'abstarct_file_status',
+        'payment_status'
+    )
+    user = get_object_or_404(queryset, user=request.user)
+    return render(
+        request, 'dashboard_status.html', 
+        {'status_user': user}
+    )
 
 
 @login_required(login_url='/login/')
 def dashboard_abstract(request):
     user = get_object_or_404(UserProfile, user=request.user)
     if request.method == 'POST':
-        form = 
-    return render(request, 'dashboard_abstract.html', {'profile_user': user})
+        form = UploadAbstractForm(
+            request.POST,
+            request.FILES,
+            instance=user
+        )
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard_abstract')
+    else:
+        form = UploadAbstractForm(instance=user)
+    return render(
+        request, 'dashboard_abstract.html',
+        {'form': form}
+    )
 
 
 @login_required(login_url='/login/')
@@ -62,21 +82,29 @@ def dashboard_payment(request):
     user = get_object_or_404(UserProfile, user=request.user)
     if request.method == 'POST':
         if request.FILES:
-            form = UploadPaymentBankForm(
+            bank_form = UploadPaymentBankForm(
                 request.POST,
                 request.FILES, 
                 instance=user
             )
+            if bank_form.is_valid():
+                bank_form.save()
+                return redirect('dashboard_payment')
         else:
-            form = UploadPaymentPaypalForm(
+            paypal_form = UploadPaymentPaypalForm(
                 request.POST,
                 instance=user
             )
-        
-
-        if paypal_form.is_valid() or :
-            form.save()
-            return redirect('dashboard_status')
+            if paypal_form.is_valid():
+                paypal_form.save()
+                return redirect('dashboard_payment')
     else:
-        form = UploadPaymentForm(instance=user)
-    return render(request, 'dashboard_payment.html', {'form': form})
+        bank_form = UploadPaymentBankForm(instance=user)
+        paypal_form = UploadPaymentPaypalForm(instance=user)
+    return render(
+        request, 'dashboard_payment.html', 
+        {
+            'bank_form': bank_form, 
+            'paypal_form': paypal_form
+        }
+    )

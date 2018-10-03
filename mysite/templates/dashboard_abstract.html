@@ -22,11 +22,33 @@
         {% if user.is_authenticated %}
           <p>Please update your abstract</p>
             <br>
-              <form method="post" action="#">
+              <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div style="height: 150px;width: 100%">
-                  <label for="field.id_for_label">Abstract file</label>
-                  <input type="file" name="abstarct_file" placeholder="Abstract file" class="form-control" required="" id="id_abstarct_file" accept=".pdf,.docx,.rtf">
+                  {% for field in form %}
+                  <div class="form-group">
+                    <label for="field.id_for_label">{{ field.label }}</label>
+                    {% if form.errors %} 
+                    {% if field.errors %}
+                    <div class="form-group has-error">
+                      {% render_field field class="form-control" placeholder=field.label %}
+                    </div>
+                    {% for error in field.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %} 
+                    {% else %}
+                    <div class="form-group">
+                      {% render_field field class="form-control" placeholder=field.label %}
+                    </div>
+                    {% endif %}
+                    {% else %} 
+                    {% render_field field class="form-control" placeholder=field.label %} 
+                    {% endif %}
+                  </div>
+                  {% endfor %}
+                  <!-- <label for="field.id_for_label">Abstract file</label>
+                  <input type="file" name="abstarct_file" placeholder="Abstract file" class="form-control" required="" id="id_abstarct_file" accept=".pdf,.docx,.rtf"> -->
+                  
                   <input style="margin: 20px 40%;" class="button-con green" type="submit" name="Submit" value="Submit">
                 </div>
               </form> 

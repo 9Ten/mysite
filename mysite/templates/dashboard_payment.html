@@ -27,58 +27,82 @@
         <div class="tab-content">
           <!-- Section National Payment -->
           <div class="tab-pane fade" id="national-payment">
-              <center>
-                <h3 class="dashboard-header">National Payment</h3>
-                <form>
-                  <input type="text" name="payment-id" placeholder="transaction-ID" pattern=".{17,18}" required title="Please insert correct transaction ID">
-                  <input class="button-con blue" type="submit" value="Submit">
-                </form>
-                <table class="payment">
-                  <tr>
-                    <th>Type</th>
-                    <th>Price(USD)</th>
-                    <th>Paypal</th>
-                  </tr>
-                  <tr>
-                    <td>Listener</td>
-                    <td>250</td>
-                    <td>
-                      <form style="border:0px;margin-top: 5px" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-                        <input type="hidden" name="cmd" value="_xclick">
-                        <input type="hidden" name="business" value="phonkornkrit@gmail.com">
-                        <input type="hidden" name="lc" value="US">
-                        <input type="hidden" name="item_name" value="Listener 250 THB">
-                        <input type="hidden" name="amount" value="250.00">
-                        <input type="hidden" name="currency_code" value="THB">
-                        <input type="hidden" name="button_subtype" value="services">
-                        <input type="hidden" name="no_note" value="0">
-                        <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynow_LG.gif:NonHostedGuest">
-                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                        <img alt="" border="0" src="https://www.paypalobjects.com/th_TH/i/scr/pixel.gif" width="1" height="1">
-                      </form>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Author</td>
-                    <td>400</td>
-                    <td>
-                      <form style="border:0px;margin-top: 5px" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-                        <input type="hidden" name="cmd" value="_xclick">
-                        <input type="hidden" name="business" value="phonkornkrit@gmail.com">
-                        <input type="hidden" name="lc" value="US">
-                        <input type="hidden" name="item_name" value="Listener 250 THB">
-                        <input type="hidden" name="amount" value="250.00">
-                        <input type="hidden" name="currency_code" value="THB">
-                        <input type="hidden" name="button_subtype" value="services">
-                        <input type="hidden" name="no_note" value="0">
-                        <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynow_LG.gif:NonHostedGuest">
-                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                        <img alt="" border="0" src="https://www.paypalobjects.com/th_TH/i/scr/pixel.gif" width="1" height="1">
-                      </form>
-                    </td>
-                  </tr>
-                </table>
-              </center>
+            <center>
+              <h3 class="dashboard-header">National Payment</h3>
+              <form  method="post">
+                {% csrf_token %}
+                {% for field in paypal_form %}
+                <div class="form-group">
+                  <label for="field.id_for_label">{{ field.label }}</label>
+                  {% if paypal_form.errors %} 
+                  {% if field.errors %}
+                  <div class="form-group has-error">
+                    {% render_field field class="form-control" placeholder=field.label %}
+                  </div>
+                  {% for error in field.errors %}
+                  <span class="help-block">{{ error }}</span>
+                  {% endfor %} 
+                  {% else %}
+                  <div class="form-group">
+                    {% render_field field class="form-control" placeholder=field.label %}
+                  </div>
+                  {% endif %}
+
+                  {% else %} 
+                  {% render_field field class="form-control" placeholder=field.label %} 
+                  {% endif %}
+                </div>
+                {% endfor %}
+                <!-- <input type="text" name="payment-id" placeholder="transaction-ID" pattern=".{17,18}" required title="Please insert correct transaction ID"> -->
+                <input class="button-con blue" type="submit" value="Submit">
+              </form>
+              <table class="payment">
+                <tr>
+                  <th>Type</th>
+                  <th>Price(USD)</th>
+                  <th>Paypal</th>
+                </tr>
+                <tr>
+                  <td>Listener</td>
+                  <td>250</td>
+                  <td>
+                    <form style="border:0px;margin-top: 5px" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                      <input type="hidden" name="cmd" value="_xclick">
+                      <input type="hidden" name="business" value="phonkornkrit@gmail.com">
+                      <input type="hidden" name="lc" value="US">
+                      <input type="hidden" name="item_name" value="Listener 250 THB">
+                      <input type="hidden" name="amount" value="250.00">
+                      <input type="hidden" name="currency_code" value="THB">
+                      <input type="hidden" name="button_subtype" value="services">
+                      <input type="hidden" name="no_note" value="0">
+                      <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynow_LG.gif:NonHostedGuest">
+                      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                      <img alt="" border="0" src="https://www.paypalobjects.com/th_TH/i/scr/pixel.gif" width="1" height="1">
+                    </form>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Author</td>
+                  <td>400</td>
+                  <td>
+                    <form style="border:0px;margin-top: 5px" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                      {% csrf_token %}
+                      <input type="hidden" name="cmd" value="_xclick">
+                      <input type="hidden" name="business" value="phonkornkrit@gmail.com">
+                      <input type="hidden" name="lc" value="US">
+                      <input type="hidden" name="item_name" value="Listener 250 THB">
+                      <input type="hidden" name="amount" value="250.00">
+                      <input type="hidden" name="currency_code" value="THB">
+                      <input type="hidden" name="button_subtype" value="services">
+                      <input type="hidden" name="no_note" value="0">
+                      <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynow_LG.gif:NonHostedGuest">
+                      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                      <img alt="" border="0" src="https://www.paypalobjects.com/th_TH/i/scr/pixel.gif" width="1" height="1">
+                    </form>
+                  </td>
+                </tr>
+              </table>
+            </center>
           </div>
 
           <!-- Section Thai Payment -->
@@ -123,8 +147,30 @@
                 <form method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                   <div style="width: 100%">
+                    {% for field in bank_form %}
+                    <div class="form-group">
+                      <label for="field.id_for_label">{{ field.label }}</label>
+                      {% if bank_form.errors %} 
+                      {% if field.errors %}
+                      <div class="form-group has-error">
+                        {% render_field field class="form-control" placeholder=field.label %}
+                      </div>
+                      {% for error in field.errors %}
+                      <span class="help-block">{{ error }}</span>
+                      {% endfor %} 
+                      {% else %}
+                      <div class="form-group">
+                        {% render_field field class="form-control" placeholder=field.label %}
+                      </div>
+                      {% endif %}
+                      {% else %} 
+                      {% render_field field class="form-control" placeholder=field.label %} 
+                      {% endif %}
+                    </div>
+                    {% endfor %}
+<!-- 
                     <label class="dashboard-header" for="field.id_for_label">Upload your slip</label>
-                    <input type="file" name="image" class="form-control" id="id_abstarct_file" accept=".jpg,.png">
+                    <input type="file" name="image" class="form-control" id="id_abstarct_file" accept=".jpg,.png"> -->
                     <input style="margin: 20px 40%;" class="button-con green" type="submit" name="Submit" value="Submit">
                   </div>
                 </form>

@@ -22,8 +22,8 @@ unaccept_action.short_description = 'Unaccept selected users'
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = (
-        'user', 'user_type', 'accept', 
-        'abstarct_file', 'paypal_trans_id', 'country', 'update'
+        'user', 'user_type', 'accept', 'country', 'update',
+        'abstarct_file', 'slip_pic', 'paypal_trans_id', 
     )
     list_filter = [
         'accept', 
@@ -39,6 +39,7 @@ class UserProfileAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('Profile', {
+            'classes': ('collapse',),
             'fields': (
                 'user', 'title', 'first_name', 'mid_name', 'last_name', 
                 'country',  'unit', 'department', 'degree', 
@@ -54,7 +55,7 @@ class UserProfileAdmin(admin.ModelAdmin):
         }),
         ('Payment', {
             'fields': (
-                'slip_pic'
+                'slip_pic',
                 'paypal_trans_id', 
                 'paypal_uploaded',
                 'payment_status',

@@ -353,7 +353,7 @@ class UserProfile(models.Model):
         'degree',
         'country',
         'phone_number',
-        'user_type'
+        'user_type',
     ]
     # objects = UserProfileManager()
 

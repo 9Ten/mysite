@@ -20,7 +20,7 @@
   <div class="dashboard-right-block">
     <h2 class="dashboard-header">General</h2>
     <div class="register-form">
-      <form method="post" enctype="multipart/form-data">
+      <form method="post">
         {% csrf_token %}
         <h2 class="text-center">Dashboard</h2>
         {% for field in form %}
