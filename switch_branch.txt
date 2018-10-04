@@ -3,3 +3,6 @@ git checkout <branch>
 
 # create a new branch
 git checkout -b <branch>
+
+# heroku run app
+git checkout dev-ten

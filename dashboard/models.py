@@ -16,12 +16,14 @@ User = get_user_model()
 def abstract_handle(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     filename_ext = filename.split('.')[1]
-    return 'abstract/{}.{}'.format(str(instance.user.id), filename_ext)
+    filename = str(instance.user).split('@')[0]
+    return 'abstract/{}.{}'.format(filename, filename_ext)
 
 def payment_handle(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     filename_ext = filename.split('.')[1]
-    return 'picture/{}.{}'.format(str(instance.user.id), filename_ext)
+    filename = str(instance.user).split('@')[0]
+    return 'picture/{}.{}'.format(filename, filename_ext)
 
 
 class UserProfile(models.Model):
@@ -331,7 +333,7 @@ class UserProfile(models.Model):
     #=== Section dashboard ===#
     # abstract
     # description = models.CharField(max_length=255, blank=True)
-    abstarct_file = models.FileField(upload_to=abstract_handle, validators=[FileExtensionValidator(['pdf', '.docx', 'rtf'])], help_text="Browse a file")
+    abstarct_file = models.FileField(upload_to=abstract_handle, validators=[FileExtensionValidator(['pdf', 'docx', 'rtf'])], help_text="Browse a file")
     abstarct_file_uploaded = models.DateTimeField(null=True, blank=True)
     abstarct_file_status = models.BooleanField(default=False)
     # payment-thai
@@ -356,34 +358,8 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.email
 
-    def status_user(self):
-        if self.abstarct_file_status and self.payment_status:
-            self.user_status = 'ready'
-            return True
-        else:
-            self.user_status = 'waiting'
-            return False
-
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        # UserProfile.objects.get_or_create(user=instance)
         UserProfile.objects.create(user=instance)
-        # userprofile = UserProfile(user=instance)
-        # userprofile.save()
-        # UserProfile.objects.create(user=instance)
-
-# @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.userProfile.save()
-
-# @receiver(post_save, sender=User)
-# def update_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         UserProfile.objects.create(user=instance)
-#     instance.profile.save()
-
-# @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.UserProfile.save()

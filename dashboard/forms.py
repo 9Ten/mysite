@@ -57,6 +57,7 @@ class UploadPaymentBankForm(forms.ModelForm):
             user.save()
         return user
 
+
 class UploadPaymentPaypalForm(forms.ModelForm):
     class Meta:
         model = UserProfile
@@ -73,6 +74,7 @@ class UploadPaymentPaypalForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
 
 class UploadAbstractForm(forms.ModelForm):
     class Meta:

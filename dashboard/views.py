@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 
 from dashboard.forms import *
+from django.core.mail import send_mail
+from django.conf import settings
 
 @login_required(login_url='/login/')
 def dashboard_view(request):
@@ -68,6 +70,13 @@ def dashboard_abstract(request):
         )
         if form.is_valid():
             form.save()
+            # check_url = 'http://{}/myadmin/dashboard/userprofile/'.format(settings.ALLOWED_HOSTS[0])
+            # send_mail(
+            #     'ASA2018-Abstract-{}'.format(str(user)),
+            #     'Please check upload {}'.format(check_url),
+            #     settings.DEFAULT_FROM_EMAIL,
+            #     ['ArachnologyConference@gmail.com',],
+            # )
             return redirect('dashboard_abstract')
     else:
         form = UploadAbstractForm(instance=user)
@@ -89,6 +98,13 @@ def dashboard_payment(request):
             )
             if bank_form.is_valid():
                 bank_form.save()
+                check_url = 'http://{}/myadmin/dashboard/userprofile/'.format(settings.ALLOWED_HOSTS[0])
+                send_mail(
+                    'ASA2018-Payment-{}'.format(str(user)),
+                    'Please check upload {}'.format(check_url),
+                    settings.DEFAULT_FROM_EMAIL,
+                    ['ArachnologyConference@gmail.com',],
+                )
                 return redirect('dashboard_payment')
         else:
             paypal_form = UploadPaymentPaypalForm(
@@ -97,6 +113,13 @@ def dashboard_payment(request):
             )
             if paypal_form.is_valid():
                 paypal_form.save()
+                check_url = 'http://{}/myadmin/dashboard/userprofile/'.format(settings.ALLOWED_HOSTS[0])
+                send_mail(
+                    'ASA2018-Payment-{}'.format(str(user)),
+                    'Please check upload {}'.format(check_url),
+                    settings.DEFAULT_FROM_EMAIL,
+                    ['ArachnologyConference@gmail.com',],
+                )
                 return redirect('dashboard_payment')
     else:
         bank_form = UploadPaymentBankForm(instance=user)
