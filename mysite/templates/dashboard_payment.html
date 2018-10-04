@@ -20,15 +20,15 @@
       <h2 class="dashboard-header">Payment</h2>
       {% if user.is_authenticated %}
       <ul class="nav nav-tabs">
-        <li><a data-toggle="tab" href="#national-payment">National Payment</a></li>
-        <li><a data-toggle="tab" href="#thai-payment">Thai Payment</a></li>
-        <li><a data-toggle="tab" href="#about-payment">About Payment</a></li>
+        <li class="active"><a data-toggle="tab" href="#about-payment">About Payment</a></li>
+        <li><a data-toggle="tab" href="#national-payment">PayPal</a></li>
+        <li><a data-toggle="tab" href="#thai-payment">Bank transfer</a></li>
       </ul> 
       <div class="tab-content">
         <!-- Section National Payment -->
         <div class="tab-pane fade" id="national-payment">
           <center>
-            <h3 class="dashboard-header">National Payment</h3>
+            <h3 class="dashboard-header">PayPal</h3>
             <form  method="post">
               {% csrf_token %}
               {% for field in paypal_form %}
@@ -61,16 +61,15 @@
               <input type="hidden" name="hosted_button_id" value="PDC3QYRD47WLJ">
               <table class="paypal-table">
                 <tr>
-                  <th>
-                    <input type="hidden" name="on0" value="Type">
-            <h3 class="dashboard-header">Select your type</h3>
-                  </th>
+                  <td>
+                    <input type="hidden" name="on0" value="Type"><h3 class="dashboard-header">Payment for international (USD)</h3>
+                  </td>
                 </tr>
                 <tr>
                   <td>
                     <select name="os0">
-                      <option value="Listener">Listener $250.00 USD</option>
-                      <option value="Author">Author $400.00 USD</option>
+                      <option value="Delegate">Delegate $300.00 USD</option>
+                      <option value="Student">Student $200.00 USD</option>
                     </select> 
                   </td>
                 </tr>
@@ -79,48 +78,36 @@
               <input style="width: 160px;margin-top: 15px" type="image" src="https://www.paypalobjects.com/en_GB/TH/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - วิธีชำระเงินแบบออนไลน์ที่ปลอดภัยกว่าและง่ายกว่า!">
               <img alt="" border="0" src="https://www.paypalobjects.com/th_TH/i/scr/pixel.gif" width="1" height="1">
             </form>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+              <input type="hidden" name="cmd" value="_s-xclick">
+              <input type="hidden" name="hosted_button_id" value="T4RQF8WTP235U">
+              <table class="paypal-table">
+                <tr>
+                  <td>
+                    <input type="hidden" name="on0" value="Type"><h3 class="dashboard-header">ชำระเงินค่าสมัครสำหรับคนไทย (THB)</h3>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <select name="os0">
+                      <option value="Delegate">Delegate ฿9,900.00 THB</option>
+                      <option value="Student">Student ฿6,600.00 THB</option>
+                    </select> 
+                  </td>
+                </tr>
+              </table>
+              <input type="hidden" name="currency_code" value="THB">
+              <input style="width: 160px;margin-top: 15px" type="image" src="https://www.paypalobjects.com/th_TH/TH/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - วิธีชำระเงินแบบออนไลน์ที่ปลอดภัยกว่าและง่ายกว่า!">
+              <img alt="" border="0" src="https://www.paypalobjects.com/th_TH/i/scr/pixel.gif" width="1" height="1">
+            </form>
+
           </center>
         </div>
 
         <!-- Section Thai Payment -->
         <div class="tab-pane fade" id="thai-payment">
           <center>
-            <h3 class="dashboard-header">Thai Payment</h3>
-            <table class="payment">
-              <tr>
-                <th>ประเภทผู้เข้าร่วม</th>
-                <th>ราคา (บาท)</th>
-              </tr>
-              <tr>
-                <td>Listener</td>
-                <td>7,500</td>
-              </tr>
-              <tr>
-                <td>Author</td>
-                <td>8,500</td>
-              </tr>
-            </table>
-            <h3 class="dashboard-header">Bank Detail</h3>
-            <img src="{% static 'image/bank.jpg' %}" style="width: 200px" alt="Bangkok Bank(ธนาคารกรุงเทพ)">
-            <table class="payment">
-              <th colspan="2">Bangkok Bank Public Company Limited (BBL)</th>
-              <tr>
-                <td>Account Name</td>
-                <td>Sirat Lertjintanakit</td>
-              </tr>
-              <tr>
-                <td>Branch</td>
-                <td>0939 Chamchuri Square</td>
-              </tr>
-              <tr>
-                <td>Account no</td>
-                <td>939-020404-9</td>
-              </tr>
-              <tr>
-                <td>Swift code</td>
-                <td>BKKBTHBK</td>
-              </tr>
-            </table>                  
+            <h3 class="dashboard-header">Bank transfer</h3>
             <form method="post" enctype="multipart/form-data">
               {% csrf_token %}
               <div style="width: 100%">
@@ -151,20 +138,102 @@
                     <input style="margin: 20px 40%;" class="button-con green" type="submit" name="Submit" value="Submit">
                   </div>
                 </form>
+                <table class="payment">
+                  <tr>
+                    <th>ประเภทผู้เข้าร่วม</th>
+                    <th>ราคา (บาท)</th>
+                  </tr>
+                  <tr>
+                    <td>Student</td>
+                    <td>6,600</td>
+                  </tr>
+                  <tr>
+                    <td>Delegate</td>
+                    <td>9,900</td>
+                  </tr>
+                </table>
+                <h3 class="dashboard-header">Bank Detail</h3>
+                <img src="{% static 'image/bank.jpg' %}" style="width: 200px" alt="Bangkok Bank(ธนาคารกรุงเทพ)">
+                <table class="payment">
+                  <th colspan="2">Bangkok Bank Public Company Limited (BBL)</th>
+                  <tr>
+                    <td>Account Name</td>
+                    <td>Sirat Lertjintanakit</td>
+                  </tr>
+                  <tr>
+                    <td>Branch</td>
+                    <td>0939 Chamchuri Square</td>
+                  </tr>
+                  <tr>
+                    <td>Account no</td>
+                    <td>939-020404-9</td>
+                  </tr>
+                  <tr>
+                    <td>Swift code</td>
+                    <td>BKKBTHBK</td>
+                  </tr>
+                </table>
+                <h3 class="dashboard-header"></h3>
+                <img src="{% static 'image/kasikornbank.png' %}" style="width: 200px" alt="Bangkok Bank(ธนาคารกรุงเทพ)">
+                <table class="payment">
+                  <th colspan="2">Kasikorn Bank</th>
+                  <tr>
+                    <td>Account Name</td>
+                    <td>Department of Biology, Faculty of Science, Chulalongkorn University</td>
+                  </tr>
+                  <tr>
+                    <td>Branch</td>
+                    <td>Siam square</td>
+                  </tr>
+                  <tr>
+                    <td>Account no</td>
+                    <td>026-2-98713-2</td>
+                  </tr>
+                  <tr>
+                    <td>Swift code</td>
+                    <td>KASITHBK</td>
+                  </tr>
+                </table>               
               </center>            
             </div>
 
             <!-- Section About Payment -->
             <div class="tab-pane fade in active" id="about-payment">
               <center><h3 class="dashboard-header">About Payment</h3></center>
-              <p>
-                According to The 5<sup>th</sup> Asian Society of Arachnology Conference, there are 2 payment methods: National payment(<a href="https://www.paypal.com">Paypal</a>) and Thai payment(<a href="https://www.bangkokbank.com/">Bangkok bank</a>).
-                <br>
+              <div class="paragraph">
+                <p>
+                  Payment can be made through PayPal, implemented in this registration
+                  procedure <a href="http://paypal.com" target="_blank">Paypal page</a> account : s.lertjintanakit@gmail.com
+                </p>
+                <p>
+                  or wire-transfer to:
+                </p>
+                <p class="paragraph">
+                  Bangkok Bank Public Company Limited (BBL)<br>
+                  Account Name: Sirat Lertjintanakit<br>
+                  Branch: 0939 Chamchuri Square<br>
+                  Account No. 939-020404-9<br>
+                  Swift code: BKKBTHBK
+                </p>
+                <p class="paragraph">
+                  Kasikorn Bank<br>
+                  Account Name : Department of Biology, Faculty of Science, Chulalongkorn
+                  University<br>
+                  Branch : Siam square<br>
+                  Account no. : 026-2-98713-2<br>
+                  Swift code : KASITHBK<br>
+                </p>
                 <ul>
-                  <li>If you select National Payment, you need to get the transaction id of your invoice and key into the website.</li>
-                  <li>If you select Thai Payment, you need to upload your slip to the website.</li>
+                  <li>
+                    <i>Only account-to-account deposits will be accepted, no cash or cheque
+                    deposits</i>
+                  </li>
+                  <li>
+                    <i>For question regarding monetary payment please contact Mr. Sirat
+                    Lertjintanakit (email: s.lertjintanakit@gmail.com) </i>     
+                  </li>
                 </ul>
-              </p>
+              </div>
             </div>
           </div>
           {% else %}
