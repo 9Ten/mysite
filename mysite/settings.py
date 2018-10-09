@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = '@5%j2iox9_m3cg6svn!lx1y20hp(a#eu!wd@*n9u*36@3c5aw='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -104,7 +104,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL')
+        default="postgres://nssxvlzalutuia:b1e492d9d8f41c8ce00596ac74ec468f5fd3b0d5686d426b5c38dab0b521ebfe@ec2-174-129-18-98.compute-1.amazonaws.com:5432/d13293rpmgrdej"
     )
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
@@ -147,10 +147,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR))
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
