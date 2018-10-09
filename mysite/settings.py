@@ -24,8 +24,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@5%j2iox9_m3cg6svn!lx1y20hp(a#eu!wd@*n9u*36@3c5aw='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 # Application definition
 INSTALLED_APPS = [
@@ -104,7 +104,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 DATABASES = {
     'default': dj_database_url.config(
-        default="postgres://nssxvlzalutuia:b1e492d9d8f41c8ce00596ac74ec468f5fd3b0d5686d426b5c38dab0b521ebfe@ec2-174-129-18-98.compute-1.amazonaws.com:5432/d13293rpmgrdej"
+        default="postgres://yywnxkxilmbspa:f2ae6432a69b78166ecccc1cdd4b399c31eb0b325af4861758b614b718e9115a@ec2-75-101-153-56.compute-1.amazonaws.com:5432/d3lne6ciq5746c"
     )
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
