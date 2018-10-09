@@ -70,13 +70,13 @@ def dashboard_abstract(request):
         )
         if form.is_valid():
             form.save()
-            # check_url = 'http://{}/myadmin/dashboard/userprofile/'.format(settings.ALLOWED_HOSTS[0])
-            # send_mail(
-            #     'ASA2018-Abstract-{}'.format(str(user)),
-            #     'Please check upload {}'.format(check_url),
-            #     settings.DEFAULT_FROM_EMAIL,
-            #     ['ArachnologyConference@gmail.com',],
-            # )
+            check_url = 'http://{}/myadmin/dashboard/userprofile/'.format(settings.ALLOWED_HOSTS[0])
+            send_mail(
+                'ASA2018-Abstract-{}'.format(str(user)),
+                'Please check upload {}'.format(check_url),
+                settings.DEFAULT_FROM_EMAIL,
+                ['ArachnologyConference@gmail.com',],
+            )
             return redirect('dashboard_abstract')
     else:
         form = UploadAbstractForm(instance=user)

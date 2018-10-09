@@ -27,7 +27,7 @@ from mysite import views as static_content
 
 admin.site.site_header = 'Web-Conferrence Admin'
 admin.site.site_title = 'Web-Conferrence Admin'
-admin.site.site_url = 'http://127.0.0.1:8000/'
+# admin.site.site_url = 'http://127.0.0.1:8000/'
 admin.site.index_title = 'Web-Conferrence Administration'
 
 
