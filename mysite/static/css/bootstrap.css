@@ -7179,3 +7179,40 @@ table.payment td:nth-child(3){
   width: 20%;
 }
 /*----- END DASHBOARD -----*/
+
+.paypal-table{
+  width: 100%
+}
+
+.paypal-table th,td,tr{
+  text-align: center;
+  padding: 10px 0;
+  font-size: 20px;
+  border: 0px solid transparent;
+}
+
+#table_programs>table{
+  margin: 40px 30px;
+  width: 80%;
+}
+
+#table_programs td  {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+  width: 25%;
+  font-size: 16px;
+}
+#table_programs th  {
+  text-align:center;
+  background-color: #9ad4de;
+  color: #504531;
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+  width: 25%;
+  font-size: 18px;
+}
+#table_programs td:nth-child(even) {
+  width: 60%;
+}
