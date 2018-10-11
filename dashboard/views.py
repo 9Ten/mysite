@@ -12,6 +12,8 @@ def dashboard_view(request):
         'title',
         'first_name',
         'last_name',
+        'update',
+        
         'institution',
         'unit',
         'department',
@@ -20,7 +22,11 @@ def dashboard_view(request):
         'phone_number',
         'address',
         'user_type',
-        'update',
+
+        'presentation_type',
+        'shirt_size',
+        'dietary_restriction',
+        'dietary_other',
     )
     user = get_object_or_404(queryset, user=request.user)
     return render(
