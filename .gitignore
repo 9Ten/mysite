@@ -1,9 +1,4 @@
 sendgrid.env
 __pycache__
-<<<<<<< HEAD
 *.pyc
-=======
-*.pyc
-media/
 db.sqlite3
->>>>>>> origin/dev-jj
