@@ -1,6 +1,6 @@
 document.onreadystatechange = () => {
   if (document.readyState === 'complete') {
-    var countDownDate = new Date("November 24, 2018 23:23:59").getTime();
+    var countDownDate = new Date("October 31, 2018 23:23:59").getTime();
     var x = setInterval(function() {
     var now = new Date().getTime();
     var distance = countDownDate - now;
