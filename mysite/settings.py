@@ -24,8 +24,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@5%j2iox9_m3cg6svn!lx1y20hp(a#eu!wd@*n9u*36@3c5aw='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
+# DEBUG = True
+DEBUG = False
 
 # Application definition
 INSTALLED_APPS = [
@@ -47,11 +47,11 @@ INSTALLED_APPS = [
 ]
 
 #=== Development ===#
-ALLOWED_HOSTS = ['localhost']
+# ALLOWED_HOSTS = ['localhost']
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  
 
 #=== Production ===#
-# ALLOWED_HOSTS = ['conference-django.herokuapp.com']
+ALLOWED_HOSTS = ['conference-django.herokuapp.com']
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'ArachnologyConference@gmail.com'
@@ -103,13 +103,13 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 DATABASES = {
-    # 'default': dj_database_url.config(
-    #     default="postgres://yywnxkxilmbspa:f2ae6432a69b78166ecccc1cdd4b399c31eb0b325af4861758b614b718e9115a@ec2-75-101-153-56.compute-1.amazonaws.com:5432/d3lne6ciq5746c"
-    # )
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(
+        default="postgres://yywnxkxilmbspa:f2ae6432a69b78166ecccc1cdd4b399c31eb0b325af4861758b614b718e9115a@ec2-75-101-153-56.compute-1.amazonaws.com:5432/d3lne6ciq5746c"
+    )
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
 }
 
 
@@ -145,7 +145,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
