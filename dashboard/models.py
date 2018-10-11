@@ -346,15 +346,15 @@ class UserProfile(models.Model):
     phone_number = models.CharField(max_length=15)
     address = models.TextField()
 
-    user_type = models.CharField(max_length=30, choices=USER_TYPE_CHOICES, default='listener')
+    user_type = models.CharField(max_length=30, choices=USER_TYPE_CHOICES, default='delegate')
     user_status = models.CharField(max_length=30, choices=USER_STATUS_CHOICES, default='waiting')
     update = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     accept = models.BooleanField(default=False)
 
     #=== Addition register_form ===#
-    presentation_type = models.CharField(max_length=30, choices=PRESENTATION_CHOICES)
-    shirt_size = models.CharField(max_length=30, choices=SIZE_CHOICES)
+    presentation_type = models.CharField(max_length=30, choices=PRESENTATION_CHOICES, default='oral')
+    shirt_size = models.CharField(max_length=30, choices=SIZE_CHOICES, default='s')
     dietary_restriction = models.CharField(max_length=30, choices=DIETARY_CHOICES, default='none')
     dietary_other = models.CharField(max_length=50, blank=True)
 
