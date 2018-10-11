@@ -66,16 +66,20 @@ decline_action.short_description = 'Confirm selected users that abstarct_file no
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = (
-        'user', 'user_type', 'user_status', 
+        'user', 'user_type', 'presentation_type', 'user_status', 
         'abstarct_file_status', 'abstarct_file', 'payment_status', 'slip_pic', 'paypal_trans_id', 
-        'accept', 'update',
+        'accept', 'update', 'shirt_size', 'dietary_restriction', 'dietary_other',
     )
     list_filter = [
         'accept', 
         'user_type',
         'user_status', 
         'abstarct_file_status',
-        'payment_status'
+        'payment_status',
+
+        'presentation_type',
+        'shirt_size',
+        'dietary_restriction',
     ]
     search_fields = ['user__email', 'paypal_trans_id']
     list_display_links = ['user', 'abstarct_file', 'slip_pic']
@@ -109,6 +113,11 @@ class UserProfileAdmin(admin.ModelAdmin):
         ('Approvement', {
             'fields': (
                 'user_type', 
+                'presentation_type',
+                'shirt_size',
+                'dietary_restriction',
+                'dietary_other',
+
                 'user_status', 
                 'update',
                 'timestamp',
@@ -122,7 +131,7 @@ class UserProfileAdmin(admin.ModelAdmin):
         'institution_country', 'phone_number', 'address', 
         'abstarct_file', 'abstarct_file_uploaded', 
         'slip_pic', 'paypal_trans_id', 'payment_uploaded',
-        'user_type', 'update','timestamp',
+        'user_type', 'update','timestamp', 'presentation_type', 'shirt_size', 'dietary_restriction', 'dietary_other',
     )
     actions = [confirm_action, decline_action, accept_action, unaccept_action,]
 

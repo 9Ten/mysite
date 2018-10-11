@@ -19,6 +19,11 @@ class ProfileForm(forms.ModelForm):
             'phone_number',
             'address',
             'user_type',
+
+            'presentation_type',
+            'shirt_size',
+            'dietary_restriction',
+            'dietary_other',
         )
 
 
@@ -37,6 +42,11 @@ class EditProfileForm(forms.ModelForm):
             'phone_number',
             'address',
             'user_type',
+
+            'presentation_type',
+            'shirt_size',
+            'dietary_restriction',
+            'dietary_other',
         )
 
 

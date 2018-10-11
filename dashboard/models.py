@@ -296,10 +296,32 @@ class UserProfile(models.Model):
         ('prof', 'Professor'),
         ('other', 'Other')
     ]
+
+    #=== Addition register_form ===#
     USER_TYPE_CHOICES = [
-        ('listener', 'Listener'),
-        ('author', 'Author')
+        ('delegate', 'Delegate'),
+        ('student', 'Student')
     ]
+    PRESENTATION_CHOICES = [
+        ('oral', 'Oral presentation'),
+        ('poster', 'Poster presentation'),
+        ('oral_poster', 'Both oral and poster presentation'),
+    ]
+    SIZE_CHOICES = [
+        ('s', 'S (Chest: 36 inch)'),
+        ('m', 'M (Chest: 38 inch)'),
+        ('l', 'L (Chest: 40 inch)'),
+        ('xl', 'XL (Chest: 42 inch)'),
+        ('xxl', 'XXL (Chest: 44 inch)'),
+        ('xxxl', 'XXXL (Chest: 46 inch)'),
+    ]
+    DIETARY_CHOICES = [
+        ('none', 'None'),
+        ('halal', 'Halal'),
+        ('vegan', 'Vegan'),
+        ('other', 'Other'),
+    ]
+
     USER_STATUS_CHOICES = [
         ('waiting', 'Waiting'),
         ('pending', 'Pending'),
@@ -330,6 +352,12 @@ class UserProfile(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     accept = models.BooleanField(default=False)
 
+    #=== Addition register_form ===#
+    presentation_type = models.CharField(max_length=30, choices=PRESENTATION_CHOICES)
+    shirt_size = models.CharField(max_length=30, choices=SIZE_CHOICES)
+    dietary_restriction = models.CharField(max_length=30, choices=DIETARY_CHOICES, default='none')
+    dietary_other = models.CharField(max_length=50, blank=True)
+
     #=== Section dashboard ===#
     # abstract
     # description = models.CharField(max_length=255, blank=True)
@@ -353,6 +381,10 @@ class UserProfile(models.Model):
         'country',
         'phone_number',
         'user_type',
+
+        'presentation_type',
+        'shirt_size',
+        'dietary_restriction',
     ]
 
     def __str__(self):
