@@ -77,7 +77,7 @@ class UserProfileAdmin(admin.ModelAdmin):
             'classes': ('collapse',),
             'fields': (
                 'user', 'title', 'first_name', 'mid_name', 'last_name', 
-                'country',  'unit', 'department', ' degree', 
+                'country',  'unit', 'department', 'degree', 
                 'institution_country', 'phone_number', 'address',
             )
         }),
