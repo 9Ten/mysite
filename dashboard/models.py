@@ -325,9 +325,11 @@ class UserProfile(models.Model):
     USER_STATUS_CHOICES = [
         ('waiting', 'Waiting'),
         ('pending', 'Pending'),
-        ('confirm', 'Confirm'),
-        ('decline', 'Decline'),
-        ('ready', 'Ready'),
+        ('accepted', 'Accepted'),
+    ]
+    STATUS_CHOICES = [
+        ('-', '-'),
+        ('accepted', 'Accepted'),
     ]
 
     #=== Section userprofile ===#
@@ -340,7 +342,7 @@ class UserProfile(models.Model):
     institution = models.CharField(max_length=30)
     unit = models.CharField(max_length=30, blank=True)
     department = models.CharField(max_length=30)
-    degree = models.CharField(max_length=10, choices=DEGREE_CHOICES)
+    degree = models.CharField(max_length=30, choices=DEGREE_CHOICES)
     country = models.CharField(max_length=30, choices=COUNTRY_CHOICES)
     institution_country = models.CharField(max_length=30, choices=COUNTRY_CHOICES)
     phone_number = models.CharField(max_length=15)
@@ -350,7 +352,7 @@ class UserProfile(models.Model):
     user_status = models.CharField(max_length=30, choices=USER_STATUS_CHOICES, default='waiting')
     update = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-    accept = models.BooleanField(default=False)
+    # accept = models.BooleanField(default=False)
 
     #=== Addition register_form ===#
     presentation_type = models.CharField(max_length=30, choices=PRESENTATION_CHOICES, default='oral')
@@ -363,13 +365,13 @@ class UserProfile(models.Model):
     # description = models.CharField(max_length=255, blank=True)
     abstarct_file = models.FileField(upload_to=abstract_handle, validators=[FileExtensionValidator(['pdf', 'docx', 'rtf'])], help_text="Browse a file")
     abstarct_file_uploaded = models.DateTimeField(null=True, blank=True)
-    abstarct_file_status = models.BooleanField(default=False)
+    abstarct_file_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='-')
     # payment-thai
     slip_pic = models.ImageField(upload_to=payment_handle, validators=[FileExtensionValidator(['jpg', 'png'])], help_text="Browse a picture")
     # payment-national
     paypal_trans_id = models.CharField(max_length=17)
     payment_uploaded = models.DateTimeField(null=True, blank=True)
-    payment_status = models.BooleanField(default=False)
+    payment_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='-')
 
     REQUIRED_FIELDS = [
         'title',

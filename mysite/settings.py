@@ -52,7 +52,6 @@ INSTALLED_APPS = [
 
 #=== Production ===#
 ALLOWED_HOSTS = [
-    'conference-django.herokuapp.com', 
     'www.asa5conference2018.com'
 ]
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

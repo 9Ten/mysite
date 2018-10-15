@@ -5,32 +5,12 @@ from dashboard.models import UserProfile
 from django.core.mail import send_mail
 from django.conf import settings
 
-# send email acception
+
 def accept_action(modeladmin, request, queryset):
     send_list = []
     for user in queryset:
-        user.accept = True
-        user.save()
-        send_list.append(str(user))
-
-    check_url = 'http://{}/dashboard/status/'.format(settings.ALLOWED_HOSTS[0])
-    send_mail(
-        'ASA2018-Accept-Conference',
-        'The 5th Asian Society of Arachnology Conference \n Congratulation! Please check your staus. {}'.format(check_url),
-        settings.DEFAULT_FROM_EMAIL,
-        send_list,
-    )
-
-def unaccept_action(modeladmin, request, queryset):
-    for user in queryset:
-        user.accept = False
-        user.save()
-
-def confirm_action(modeladmin, request, queryset):
-    send_list = []
-    for user in queryset:
         if user.user_status == 'pending':
-            user.user_status = 'confirm'
+            user.user_status = 'accepted'
             user.save()
             send_list.append(str(user))
 
@@ -42,36 +22,42 @@ def confirm_action(modeladmin, request, queryset):
         send_list,
     )
 
-def decline_action(modeladmin, request, queryset):
-    send_list = []
+
+def unaccept_action(modeladmin, request, queryset):
     for user in queryset:
-        if user.user_status == 'pending':
-            user.user_status = 'decline'
+        if user.user_status == 'accepted':
+            user.user_status = 'pending'
             user.save()
-            send_list.append(str(user))
 
-    check_url = 'http://{}/dashboard/abstract/'.format(settings.ALLOWED_HOSTS[0])
-    send_mail(
-        'ASA2018-Accept-Conference',
-        'The 5th Asian Society of Arachnology Conference \n Sorry! Please check your abstract. {}'.format(check_url),
-        settings.DEFAULT_FROM_EMAIL,
-        send_list,
-    )
 
-accept_action.short_description = 'Accept selected users that user_status ready'
-unaccept_action.short_description = 'Unaccept selected users user_status not ready'
-confirm_action.short_description = 'Confirm selected users that abstarct_file correct'
-decline_action.short_description = 'Confirm selected users that abstarct_file not correct'
+# def decline_action(modeladmin, request, queryset):
+#     send_list = []
+#     for user in queryset:
+#         if user.user_status == 'pending':
+#             user.user_status = 'decline'
+#             user.save()
+#             send_list.append(str(user))
+
+#     check_url = 'http://{}/dashboard/abstract/'.format(settings.ALLOWED_HOSTS[0])
+#     send_mail(
+#         'ASA2018-Accept-Conference',
+#         'The 5th Asian Society of Arachnology Conference \n Sorry! Please check your abstract. {}'.format(check_url),
+#         settings.DEFAULT_FROM_EMAIL,
+#         send_list,
+#     )
+
+accept_action.short_description = 'Accept selected users'
+unaccept_action.short_description = 'Unaccept selected users'
+# decline_action.short_description = 'Decline selected users'
 
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = (
         'user', 'user_type', 'presentation_type', 'user_status', 
         'abstarct_file_status', 'abstarct_file', 'payment_status', 'slip_pic', 'paypal_trans_id', 
-        'accept', 'update', 'shirt_size', 'dietary_restriction', 'dietary_other',
+        'update', 'shirt_size', 'dietary_restriction', 'dietary_other',
     )
     list_filter = [
-        'accept', 
         'user_type',
         'user_status', 
         'abstarct_file_status',
@@ -91,7 +77,7 @@ class UserProfileAdmin(admin.ModelAdmin):
             'classes': ('collapse',),
             'fields': (
                 'user', 'title', 'first_name', 'mid_name', 'last_name', 
-                'country',  'unit', 'department', 'degree', 
+                'country',  'unit', 'department', ' degree', 
                 'institution_country', 'phone_number', 'address',
             )
         }),
@@ -121,7 +107,6 @@ class UserProfileAdmin(admin.ModelAdmin):
                 'user_status', 
                 'update',
                 'timestamp',
-                'accept',
             )
         })
     )
@@ -133,7 +118,7 @@ class UserProfileAdmin(admin.ModelAdmin):
         'slip_pic', 'paypal_trans_id', 'payment_uploaded',
         'user_type', 'update','timestamp', 'presentation_type', 'shirt_size', 'dietary_restriction', 'dietary_other',
     )
-    actions = [confirm_action, decline_action, accept_action, unaccept_action,]
+    actions = [accept_action, unaccept_action,]
 
     class Meta:
         model = UserProfile

@@ -61,8 +61,8 @@ class UploadPaymentBankForm(forms.ModelForm):
     def save(self, commit=True):
         user = super(UploadPaymentBankForm, self).save(commit=False)
         user.payment_uploaded = timezone.now()
-        user.payment_status = True
-        user.user_status = 'ready'
+        user.payment_status = 'accepted'
+        user.user_status = 'pending'
         if commit:
             user.save()
         return user
@@ -79,8 +79,8 @@ class UploadPaymentPaypalForm(forms.ModelForm):
     def save(self, commit=True):
         user = super(UploadPaymentPaypalForm, self).save(commit=False)
         user.payment_uploaded = timezone.now()
-        user.payment_status = True
-        user.user_status = 'ready'
+        user.payment_status = 'accepted'
+        user.user_status = 'pending'
         if commit:
             user.save()
         return user
@@ -97,7 +97,7 @@ class UploadAbstractForm(forms.ModelForm):
     def save(self, commit=True):
         user = super(UploadAbstractForm, self).save(commit=False)
         user.abstarct_file_uploaded = timezone.now()
-        user.abstarct_file_status = True
+        user.abstarct_file_status = 'accepted'
         user.user_status = 'pending'
         if commit:
             user.save()
