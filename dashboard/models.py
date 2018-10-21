@@ -304,14 +304,14 @@ class UserProfile(models.Model):
     ]
     PRESENTATION_CHOICES = [
         ('oral presentation', 'Oral presentation'),
-        ('attending only', 'Attending only'),
-        ('spouse', 'Spouse'),
-        ('other', 'Other')   
+        ('poster presentation', 'Poster presentation'),
+        ('both oral and poster presentation', 'Both oral and poster presentation'),   
     ]
     REGISTRATION_CHOICES = [
         ('presenter', 'Presenter'),
-        ('poster presentation', 'Poster presentation'),
-        ('both oral and poster presentation', 'Both oral and poster presentation'),
+        ('attending only', 'Attending only'),
+        ('spouse', 'Spouse'),
+        ('other', 'Other') 
     ]
     SIZE_CHOICES = [
         ('s', 'S (Chest: 36 inch)'),

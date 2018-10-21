@@ -12,6 +12,7 @@ git checkout dev-ten
 python manage.py makemigrations
 
 # run server
+click > more > Run console >   
 python manage.py migrate
 python manage.py createsuperuser
 
