@@ -303,9 +303,15 @@ class UserProfile(models.Model):
         ('student', 'Student')
     ]
     PRESENTATION_CHOICES = [
-        ('oral', 'Oral presentation'),
-        ('poster', 'Poster presentation'),
-        ('oral_poster', 'Both oral and poster presentation'),
+        ('oral presentation', 'Oral presentation'),
+        ('attending only', 'Attending only'),
+        ('spouse', 'Spouse'),
+        ('other', 'Other')   
+    ]
+    REGISTRATION_CHOICES = [
+        ('presenter', 'Presenter'),
+        ('poster presentation', 'Poster presentation'),
+        ('both oral and poster presentation', 'Both oral and poster presentation'),
     ]
     SIZE_CHOICES = [
         ('s', 'S (Chest: 36 inch)'),
@@ -355,7 +361,8 @@ class UserProfile(models.Model):
     # accept = models.BooleanField(default=False)
 
     #=== Addition register_form ===#
-    presentation_type = models.CharField(max_length=30, choices=PRESENTATION_CHOICES, default='oral')
+    registration_type = models.CharField(max_length=35, choices=REGISTRATION_CHOICES, default='presenter')
+    presentation_type = models.CharField(max_length=35, choices=PRESENTATION_CHOICES, default='oral')
     shirt_size = models.CharField(max_length=30, choices=SIZE_CHOICES, default='s')
     dietary_restriction = models.CharField(max_length=30, choices=DIETARY_CHOICES, default='none')
     dietary_other = models.CharField(max_length=50, blank=True)
@@ -384,6 +391,7 @@ class UserProfile(models.Model):
         'phone_number',
         'user_type',
 
+        'registration_type',
         'presentation_type',
         'shirt_size',
         'dietary_restriction',

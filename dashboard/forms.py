@@ -20,6 +20,7 @@ class ProfileForm(forms.ModelForm):
             'address',
             'user_type',
 
+            'registration_type',
             'presentation_type',
             'shirt_size',
             'dietary_restriction',
@@ -43,6 +44,7 @@ class EditProfileForm(forms.ModelForm):
             'address',
             'user_type',
 
+            'registration_type',
             'presentation_type',
             'shirt_size',
             'dietary_restriction',

@@ -14,13 +14,13 @@ def accept_action(modeladmin, request, queryset):
             user.save()
             send_list.append(str(user))
 
-    check_url = 'http://{}/dashboard/payment/'.format(settings.ALLOWED_HOSTS[0])
-    send_mail(
-        'ASA2018-Accept-Conference',
-        'The 5th Asian Society of Arachnology Conference \n Thank You! Please check your payment for join us. {}'.format(check_url),
-        settings.DEFAULT_FROM_EMAIL,
-        send_list,
-    )
+    # check_url = 'http://{}/dashboard/payment/'.format(settings.ALLOWED_HOSTS[0])
+    # send_mail(
+    #     'ASA2018-Accept-Conference',
+    #     'The 5th Asian Society of Arachnology Conference \n Thank You! Please check your payment for join us. {}'.format(check_url),
+    #     settings.DEFAULT_FROM_EMAIL,
+    #     send_list,
+    # )
 
 
 def unaccept_action(modeladmin, request, queryset):
@@ -53,7 +53,7 @@ unaccept_action.short_description = 'Unaccept selected users'
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = (
-        'user', 'user_type', 'presentation_type', 'user_status', 
+        'user', 'user_type', 'registration_type', 'presentation_type', 'user_status', 
         'abstarct_file_status', 'abstarct_file', 'payment_status', 'slip_pic', 'paypal_trans_id', 
         'update', 'shirt_size', 'dietary_restriction', 'dietary_other',
     )
@@ -63,6 +63,7 @@ class UserProfileAdmin(admin.ModelAdmin):
         'abstarct_file_status',
         'payment_status',
 
+        'registration_type',
         'presentation_type',
         'shirt_size',
         'dietary_restriction',
@@ -99,6 +100,7 @@ class UserProfileAdmin(admin.ModelAdmin):
         ('Approvement', {
             'fields': (
                 'user_type', 
+                'registration_type',
                 'presentation_type',
                 'shirt_size',
                 'dietary_restriction',
@@ -116,7 +118,7 @@ class UserProfileAdmin(admin.ModelAdmin):
         'institution_country', 'phone_number', 'address', 
         'abstarct_file', 'abstarct_file_uploaded', 
         'slip_pic', 'paypal_trans_id', 'payment_uploaded',
-        'user_type', 'update','timestamp', 'presentation_type', 'shirt_size', 'dietary_restriction', 'dietary_other',
+        'user_type', 'update','timestamp', 'registration_type', 'presentation_type', 'shirt_size', 'dietary_restriction', 'dietary_other',
     )
     actions = [accept_action, unaccept_action,]
 

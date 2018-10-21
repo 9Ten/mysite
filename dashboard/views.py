@@ -23,6 +23,7 @@ def dashboard_view(request):
         'address',
         'user_type',
 
+        'registration_type',
         'presentation_type',
         'shirt_size',
         'dietary_restriction',
