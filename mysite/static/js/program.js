@@ -45,8 +45,10 @@ $( document ).ready(function() {
       "12:30–14:00","Lunch",
       "14:00–16:00","Oral session",
       "16:00–16:30","Coffee break",
-      "16:30–18:30","Poster award and closing session",
-
+      "16:30–17:00","Student poster award by Dr.Peter Jaeger",
+      "17:00-18:00","General assembly and election",
+      "18:00–18:30","Presentation of the 6th ASA venue by Dr.Mathew Joseph",
+      "18:30–19:00","Closing session by Dr.Joseph Koh"
     ]
   ]
   var table = document.createElement('table');
