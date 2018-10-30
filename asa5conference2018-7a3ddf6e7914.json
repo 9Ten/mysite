@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "asa5conference2018",
+  "private_key_id": "7a3ddf6e79140997ff19a59d3a5ce47dd35ac6fb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDF1kEF3qNM0lYs\nYDGtdzaiwDEgJ2pBic0s+3RctefB9kt8MTovNqe2Ca6cH2YgRwkQJVqjCxgAg6jQ\n2BaX2fVN4H+9dXSt+XO2Vt5f65HLbB7r/U9jdoLtPq9LoKJ0b360lLMLAeE10uWV\n2vv1POdnyW+Scl6fNH8zR4IUoO6O55mMiIOUpA9742scQICEF2r5zHU8ukKbUNLI\nL3C6ERuBlcOA9Kb2XjXce2709q6NA+SempXLlxcKZx9YKzUX5aWoIuVJcl/kEOSE\nomCsXeSRkgGl66tWaAETNuzEcRWwL7/ztrRiqS9SXPYHQSgjENvsSYQTvax9RWzZ\nvXf9I8alAgMBAAECggEAM4nSXKYYYp31BxB0QJ1q5VEuOxMpkjNE+S/0q2ZUHup7\n1bm5T61sWXcCPvfLEiOPT957UzhDo3apFucEU8DbL9OJU6DyqZPvuhO9UL28uILN\nN2tBMEciao3G+uu5Bp45IvAOCJMPyYbMepKWytd37UjDwSH8VntFm+VIFPmrzBxC\nON9+2ZpDnOYBhnO0vcg0dBmlNdU4bR6P3FUMGA4aoYXnTMwXyLflV8NMTfOtbYRH\nsSduM8nkGqH+pOvMgq/NMBdWEXvFopxp1aVzihP+wWHIiAU+YQSwRjmA1RRjCAba\nTSY86u0t5biA9lQaO6Ga5ejdKtRnq56Z4OJjnsUA7QKBgQDr0m2wSvzkrwRthk66\nCWlsgfuR7gx1OrefODUIWfKjjHl/cUmUE3OEXuI9WCegrkQt5YAM/TAOrg1+p24g\n81e99DPez0kCIpjzu5gyHMQA7QHZ1mCKgZ5GbFL3409ILcJJ6n6l/BLq3VNLWHOG\n8fLx2EFC+f2X0TmurRsTRU2PswKBgQDWw8fKUc7qCXB10blJ0rpQ33S+Eaj8Mypc\n43+ge60CqV2RvKNfdz8cb6EFFx5iUNxlHejOuNbNg8TdHoVtiEcSwOVhqTtEjzEC\nnOB6xQxb968meqnQ3Ki40urePnvuwszpJfSJCao+HbRDX6lhMxk6aSTsKWVbXtXg\nGXeqrgVkRwKBgAfLPqDS+aS9PBI6nCN96CQT77KVAYhmVmdGvkn2XxSUsfdKUTo5\nolm/oQ6R+U1QNSSnLyI+w/XYPs3uzq78G+xFQ+mbRDhz2EZF7vPJC5lUO/ltImex\nfP+q2NskghxKlt9GhsUJnb5xbi1RURAmsvbXRODnzj/URGnHgtuSMMwNAoGBALzc\nLjWc+3iUFHGHnIlu5ql32BHNNe2SkQ5egT1/hQVyKvaeDI1HMBixkcgILJAIy8eg\nJbqkkUDpP5Wz4WIRFW9Icm8Pgy8nPNIvYriTz+qQRVZxSCSD51uhHymRiSrN46Sj\n3AcmmK9HL96PoUP4y5ayH+YOATP4kdwgiTtvDQ7BAoGBALf/5qNkalFInPI/AJfN\nu3EhwAhltzVlFrubVwvP/cCsEH1fH6uStJzy+JRieHI/ho1kP32X7kGL/8DJemjp\nGp4dGvU7lEwGcZEdQQvKWF7mGuju3DFuMMb3f8AxUV0o5z72Hea/ltmTKenz1/Os\nVcmHnhhDrY2IvOEkrRBue/Tu\n-----END PRIVATE KEY-----\n",
+  "client_email": "asa5conference2018@asa5conference2018.iam.gserviceaccount.com",
+  "client_id": "110720394915056355890",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/asa5conference2018%40asa5conference2018.iam.gserviceaccount.com"
+}

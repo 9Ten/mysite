@@ -9,6 +9,10 @@ from django.core.validators import FileExtensionValidator
 
 from django.contrib.auth import get_user_model
 
+# Define Google Drive Storage
+from gdstorage.storage import GoogleDriveStorage
+gd_storage = GoogleDriveStorage()
+
 
 User = get_user_model()
 
@@ -369,12 +373,21 @@ class UserProfile(models.Model):
 
     #=== Section dashboard ===#
     # abstract
-    # description = models.CharField(max_length=255, blank=True)
-    abstarct_file = models.FileField(upload_to=abstract_handle, validators=[FileExtensionValidator(['pdf', 'docx', 'rtf'])], help_text="Browse a file")
+    abstarct_file = models.FileField(
+        upload_to=abstract_handle, 
+        validators=[FileExtensionValidator(['pdf', 'docx', 'rtf'])], 
+        help_text="Browse a file",
+        storage=gd_storage
+    )
     abstarct_file_uploaded = models.DateTimeField(null=True, blank=True)
     abstarct_file_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='-')
     # payment-thai
-    slip_pic = models.ImageField(upload_to=payment_handle, validators=[FileExtensionValidator(['jpg', 'png'])], help_text="Browse a picture")
+    slip_pic = models.ImageField(
+        upload_to=payment_handle, 
+        validators=[FileExtensionValidator(['jpg', 'png'])], 
+        help_text="Browse a picture", 
+        storage=gd_storage
+    )
     # payment-national
     paypal_trans_id = models.CharField(max_length=17)
     payment_uploaded = models.DateTimeField(null=True, blank=True)

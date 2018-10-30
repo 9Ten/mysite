@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     
     'ckeditor',             # CKEditor 
     'ckeditor_uploader',
-    'widget_tweaks'         # Bootstrap css
+    'widget_tweaks',         # Bootstrap css
+
+    'gdstorage'
 ]
 
 #=== Development ===#
@@ -51,8 +53,12 @@ INSTALLED_APPS = [
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  
 
 #=== Production ===#
+# Google Drive Storage Settings
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = 'asa5conference2018-7a3ddf6e7914.json'
+
 ALLOWED_HOSTS = [
-    'www.asa5conference2018.com'
+    '*'
+    # 'www.asa5conference2018.com'
 ]
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
