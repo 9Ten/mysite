@@ -57,8 +57,7 @@ INSTALLED_APPS = [
 GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = 'asa5conference2018-7a3ddf6e7914.json'
 
 ALLOWED_HOSTS = [
-    '*'
-    # 'www.asa5conference2018.com'
+    'www.asa5conference2018.com'
 ]
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
