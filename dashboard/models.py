@@ -377,7 +377,7 @@ class UserProfile(models.Model):
         upload_to=abstract_handle, 
         validators=[FileExtensionValidator(['pdf', 'docx', 'rtf'])], 
         help_text="Browse a file",
-        storage=gd_storage
+#         storage=gd_storage
     )
     abstarct_file_uploaded = models.DateTimeField(null=True, blank=True)
     abstarct_file_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='-')
@@ -386,7 +386,7 @@ class UserProfile(models.Model):
         upload_to=payment_handle, 
         validators=[FileExtensionValidator(['jpg', 'png'])], 
         help_text="Browse a picture", 
-        storage=gd_storage
+#         storage=gd_storage
     )
     # payment-national
     paypal_trans_id = models.CharField(max_length=17)
