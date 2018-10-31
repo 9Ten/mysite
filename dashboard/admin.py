@@ -133,4 +133,4 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 
 admin.site.register(UserProfile, UserProfileAdmin)
-admin.site.disable_action('delete_selected')
+# admin.site.disable_action('delete_selected')
